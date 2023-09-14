@@ -2,6 +2,7 @@ const express = require('express')
 require('./db')
 const req = require('express/lib/request')
 const res = require('express/lib/response')
+const User = require('./model/user')
 
 const app =  express()
 
@@ -12,7 +13,14 @@ app.get('/', (req, res) => {
 })
 app.use(express.json())
 app.post('/api/user/create', (req,res) => {
-    res.send(req.body)
+    const {Uname, email, password} = req.body
+    const newUser=  new User({
+        Uname,
+        email,
+        password
+    })
+
+    res.send(newUser)
 })
 
 app.listen(8000, () => {
