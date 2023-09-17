@@ -1,4 +1,5 @@
 const express = require('express')
+require("dotenv").config();
 require('./db')
 const req = require('express/lib/request')
 const res = require('express/lib/response')
