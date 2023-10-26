@@ -27,14 +27,25 @@ const formatCurrentWeather = (data) => {
     const {main: details, icon} = weather[0]
 
 
-    return {lat, lon, temp, feels_like, temp_min, temp_max, humidity, name, dt, country, sunrise, sunset, details, icon, speed}
+    return {lat, lon, temp, feels_like, temp_min, temp_max, humidity, name, dt, country, sunrise, sunset, details, icon, speed};
+};
+
+const formatForecastWeather = (data) => {
+    let {timezone, daily, hourly} = data;
+    daily = daily.slice(1,6).map()
 }
 
 const getFormattedWeatherData = async (searchParams) => {
     const formattedCurrentWeather = await getWeatherData
     ('weather', searchParams).then(formatCurrentWeather)
 
-    return formattedCurrentWeather
+    const {lat, lon} = formattedCurrentWeather;
+
+    const formattedForecastWeather = await getWeatherData("onecall", {
+        lat, lon, exclude: "current, minutely,alerts", units: searchParams.units,
+    }).then({formatForecastWeather})
+
+    return formattedCurrentWeather;
 
 }
 export default getFormattedWeatherData
