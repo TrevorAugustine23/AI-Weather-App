@@ -4,6 +4,9 @@ const router = express.Router();
 // mongoDB user model
 const User = require('./../models/User');
 
+//Password Handler
+const bcrypt = require('bcrypt');
+
 //Signup
 router.post('/signup', (req, res) => {
     let {name, email, password, dateOfBirth} = req.body;
@@ -46,14 +49,46 @@ router.post('/signup', (req, res) => {
                     status: "FAILED",
                     message: "User with the provided email already exists"
                 })
+            }else {
+                //Try to create new user
 
-            }
-         
+                //Password handling
+                const saltRounds = 10;
+                bcrypt.hash(password, saltRounds).then(hashedPassword => {
+                    const newUser = new User({
+                        name,
+                        email,
+                        password : hashedPassword,
+                        dateOfBirth
+                    });
+
+                    newUser.save().then(result => {
+                        res.json({
+                            status: "SUCCESS",
+                            message: "Signup successful",
+                            data: result,
+                        })
+                    })
+                    .catch(err => {
+                        res.json({
+                            status: "FAILED",
+                            message: "An error occurred saving user"
+                        }) 
+                    })
+                })
+                .catch(err=> {
+                    res.json({
+                        status: "FAILED",
+                        message: "An error occurred while hashing password"
+                    })
+                })
+            }   
     }).catch(err => {
         console.log(err);
         res.json({
             status: "FAILED",
-            message: "An error occurred while checking for existing user"
+            message: "An error occurred while checking for existing user",
+            data: result,
             })
         })
     }
