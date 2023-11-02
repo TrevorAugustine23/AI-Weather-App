@@ -149,12 +149,12 @@ const sendVerificationEmail = ({_id, email}, res) => {
                 <p>Hello there,</p>
                 <p>Thank you for registering. To verify your email address, please click the button below:</p>
                 <div style="text-align: center; margin-top: 20px;">
-                    <a href="${currentUrl}verify/${uniqueString}" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px;">Verify Email</a>
+                <a href="${currentUrl + "user/verify" +_id + "/" + uniqueString}" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px;">Verify Email</a>
                 </div>
                 <p>If the button above does not work, you can copy and paste the following link into your browser:</p>
-                <p>${currentUrl}verify/${uniqueString}</p>
+                <p><a href="${currentUrl + "user/verify" +_id + "/" + uniqueString}"> here </a></p>
                 <p>Thank you!</p>
-                <p> Press <a href${currentUrl + "user/verify" +_id + "/" +uniqueString}>here</a> to proceed</p> 
+                <p> Press <a href="${currentUrl + "user/verify" +_id + "/" + uniqueString}"> here </a> to proceed</p> 
             </div>
         </body>
         </html>
