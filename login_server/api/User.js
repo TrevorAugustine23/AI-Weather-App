@@ -4,8 +4,39 @@ const router = express.Router();
 // mongoDB user model
 const User = require('./../models/User');
 
+// mongoDB user verification model
+const UserVerification = require('./../models/UserVerification');
+
+//email handler
+const nodemailer = require("nodemailer");
+
+//unique string
+const {v4: uuidv4} = require("uuid");
+
+//env variables
+require("dotenv").config();
+
 //Password Handler
 const bcrypt = require('bcrypt');
+
+//nodemailer stuff
+let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user:process.env.AUTH_EMAIL,
+        pass:process.env.AUTH_PASS,
+    }
+})
+
+//testing success
+transporter.verify((error, success) => {
+    if(error) {
+        console.log(error);
+    } else {
+        console.log("Ready for messages");
+        console.log(success);
+    }
+})
 
 //Signup
 router.post('/signup', (req, res) => {
@@ -59,15 +90,13 @@ router.post('/signup', (req, res) => {
                         name,
                         email,
                         password : hashedPassword,
-                        dateOfBirth
+                        dateOfBirth, 
+                        verified: false,
                     });
 
                     newUser.save().then(result => {
-                        res.json({
-                            status: "SUCCESS",
-                            message: "Signup successful",
-                            data: result,
-                        })
+                        //handle account verification
+                        sendVerificationEmail(result, res);
                     })
                     .catch(err => {
                         res.json({
@@ -92,7 +121,43 @@ router.post('/signup', (req, res) => {
             })
         })
     }
-})
+});
+
+//send verification email
+const sendVerificationEmail = ({_id, email}, res) => {
+    //url to be used in the email
+    const currentUrl = "http://localhost:8000/";
+
+    const uniqueString = uuidv() + _id;
+
+    //mail options
+    const mailOptions = {
+        from: process.env.AUTH_EMAIL,
+        to: email,
+        subject: "Verify Your Email",
+        html: `
+        <html>
+        <head>
+            <title>Email Verification</title>
+        </head>
+        <body style="font-family: Arial, sans-serif; line-height: 1.6; background-color: #f4f4f4; margin: 0; padding: 0;">
+            <div style="max-width: 600px; margin: 20px auto; padding: 20px; background-color: #fff; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                <h1 style="color: #333; text-align: center;">Email Verification</h1>
+                <p>Hello there,</p>
+                <p>Thank you for registering. To verify your email address, please click the button below:</p>
+                <div style="text-align: center; margin-top: 20px;">
+                    <a href="${currentUrl}verify/${uniqueString}" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px;">Verify Email</a>
+                </div>
+                <p>If the button above does not work, you can copy and paste the following link into your browser:</p>
+                <p>${currentUrl}verify/${uniqueString}</p>
+                <p>Thank you!</p>
+                <p> Press <a href${currentUrl + "user/verify" +_id + "/" +uniqueString}>here</a> to proceed</p> 
+            </div>
+        </body>
+        </html>
+    `
+    };
+};
 //Signin
 router.post('/signin', (req, res) => {
     let {email, password} = req.body;
