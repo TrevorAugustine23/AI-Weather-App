@@ -157,6 +157,53 @@ const sendVerificationEmail = ({_id, email}, res) => {
         </html>
     `
     };
+
+    //hash the uniqueString
+    const saltRounds = 10;
+    bcrypt
+        .hash(uniqueString, saltRounds)
+        .then((hashedUniqueString) => {
+            //set values in userVerification collection
+            const newVerification = new UserVerification({
+                userId: _id,
+                uniqueString: hashedUniqueString,
+                createdAt: Date.now(),
+                expiresAt: Date.now() + 21600000,
+            });
+
+            newVerification
+            .save()
+            .then(() => {
+                transporter
+                .sendMail(mailOptions)
+                .then(() => {
+                    //email sent and verification records saved
+                    res.json({
+                        status: "PENDING",
+                        message: "Verification email sent",
+                    });
+                })
+                .catch((error) => {
+                    res.json({
+                        status: "FAILED",
+                        message: "Verification email failed",
+                    }); 
+                })
+            })
+            .catch((error) => {
+                console.log(error);
+                res.json({
+                    status: "FAILED",
+                    message: "Unable to save verification email data",
+                });
+            })
+        })
+        .catch(() => {
+            res.json({
+                status: "FAILED",
+                message:"An error occurred while hashing email data"
+            })
+        })
 };
 //Signin
 router.post('/signin', (req, res) => {
