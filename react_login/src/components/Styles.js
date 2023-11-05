@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+//background
+import background from './../assets/bg.jpg';
+
 export const colors ={
     primary: "#fff",
     theme: "#BE185D",
@@ -10,3 +13,14 @@ export const colors ={
     dark3: "#9CA3AF",
     red: "#DC2626"
 }
+
+//Styled components
+export const StyledContainer = styled.div`
+    margin:0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient (0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6), url${background});
+    background-attachment: fixed;
+    `
