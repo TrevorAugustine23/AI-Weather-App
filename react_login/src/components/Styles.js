@@ -60,9 +60,9 @@ export const StyledButton = styled(Link)`
     width: 150px;
     background-color: transparent;
     font-size: 16px;
-    border: 3px solid ${colors.primary};
+    border: 3px solid black;
     border-radius: 25px;
-    color: ${colors.primary};
+    color: blue;
     text-decoration: none;
     text-align: center;
     transition: ease-in-out 0.3s;
