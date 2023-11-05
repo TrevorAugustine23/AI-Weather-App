@@ -1,4 +1,4 @@
-import { StyledTitle, StyledSubTitle, Avatar, StyledButton } from "../components/Styles";
+import { StyledTitle, StyledSubTitle, Avatar, StyledButton, ButtonGroup } from "../components/Styles";
 import { styled } from 'styled-components';
 
 //Logo
@@ -25,9 +25,9 @@ const Home = () => {
             <StyledSubTitle size={27}>
                 Feel free to explore our System
             </StyledSubTitle>
-            <StyledButton to="/login">Login</StyledButton>
+            <ButtonGroup><StyledButton to="/login">Login</StyledButton>
             <StyledButton to="/signup">SignUp</StyledButton>
-
+            </ButtonGroup>
 
         </div>
     );
