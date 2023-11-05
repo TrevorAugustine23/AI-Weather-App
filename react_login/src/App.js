@@ -1,3 +1,6 @@
+//pages
+import Home from './pages/Home';
+
 //styled components
 import { StyledContainer } from "./components/Styles";
 
