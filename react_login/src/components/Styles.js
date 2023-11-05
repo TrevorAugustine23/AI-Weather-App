@@ -25,3 +25,29 @@ export const StyledContainer = styled.div`
     background-size: cover;
     background-attachment: fixed;
     `;
+
+//Home
+export const StyledTitle = styled.div`
+    font-size: ${(props) => props.size}px;
+    text-align: center;
+    color: blue;
+    padding: 5px;
+    margin-bottom: 20px;
+    `;
+
+export const StyledSubTitle = styled.div`
+    font-size: ${(props) => props.size}px;
+    text-align: center;
+    color: blue;
+    padding: 5px;
+    margin-bottom: 25px;
+    `;
+
+export const Avatar = styled.div`
+    width: 85px;
+    height: 85px;
+    border-radius: 50px;
+    background-image: url(${props => props.image});
+    background-position: center;
+    margin: auto;
+        `;

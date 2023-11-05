@@ -7,7 +7,7 @@ import { StyledContainer } from "./components/Styles";
 function App() {
   return (
     <StyledContainer>
-      <p>Hello World</p>
+      <Home/>
     </StyledContainer>
    
   );
