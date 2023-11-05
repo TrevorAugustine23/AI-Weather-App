@@ -3,6 +3,9 @@ import styled from "styled-components";
 //background
 import background from './../assets/favicon.png';
 
+//React router
+import { Link } from "react-router-dom";
+
 export const colors ={
     primary: "#fff",
     theme: "#BE185D",
