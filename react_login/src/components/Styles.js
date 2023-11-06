@@ -91,6 +91,7 @@ export const ButtonGroup = styled.div`
     letter-spacing: 1px;
     color: ${colors.light2};
     border:0;
+    outline:0;
     display: block;
     margin: 5px auto 10px auto;
     transition: ease-in-out 0.3s;
