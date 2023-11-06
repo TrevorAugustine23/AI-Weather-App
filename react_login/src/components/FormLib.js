@@ -2,14 +2,15 @@ import {useField} from 'formik';
 
 import {  
     StyledTextInput,
-    StyledLabel
+    StyledLabel,
+    StyledIcon
 } from './../components/Styles';
 
-export const TextInput = ({...props}) => {
+export const TextInput = ({icon, ...props}) => {
     const [field, meta] = useField(props);
 
     return(
-        <div>
+        <div styled={{position:"relative"}}>
             <StyledLabel htmlFor={props.name}>
                 {props.label}
             </StyledLabel>
@@ -17,6 +18,9 @@ export const TextInput = ({...props}) => {
             {...field}
             {...props}
             />
+            <StyledIcon>
+                {icon}
+            </StyledIcon>
 
         </div>
     )
