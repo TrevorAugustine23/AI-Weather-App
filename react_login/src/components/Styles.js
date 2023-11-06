@@ -115,3 +115,21 @@ export const StyledFormArea = styled.div`
     text-align: center;
     padding: 45px 55px;
     `;
+
+export const StyledFormButton = styled.p`
+    padding: 10px;
+    width: 150px;
+    background-color: transparent;
+    font-size: 16px;
+    border: 2px solid black;
+    border-radius: 25px;
+    color: blue;
+    transition: ease-in-out 0.3s;
+    
+    &:hover {
+        background-color: ${colors.theme};
+        color: ${colors.primary};
+        cursor: pointer;
+
+    }
+    `;
