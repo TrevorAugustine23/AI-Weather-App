@@ -5,6 +5,7 @@ import background from './../assets/favicon.png';
 
 //React router
 import { Link } from "react-router-dom";
+// import { StyledTitle } from './Styles';
 
 export const colors ={
     primary: "#fff",
@@ -89,7 +90,8 @@ export const ButtonGroup = styled.div`
     padding-left: 50px;
     font-size: 17px;
     letter-spacing: 1px;
-    color: ${colors.light2};
+    color: ${colors.dark1};
+    background-color: ${colors.light2}
     border:0;
     outline:0;
     display: block;
@@ -134,3 +136,13 @@ export const StyledFormButton = styled.p`
 
     }
     `;
+
+    //Icons
+    export const StyledIcon = styled.p`
+        color: ${colors.dark1};
+        position: absolute;
+        font-size: 21px;
+        top: 35px;
+        ${(props) => props.right && `right: 15px;`}
+        ${(props) => !props.right && `left: 15px;`}
+        `
