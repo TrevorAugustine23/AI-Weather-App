@@ -1,5 +1,5 @@
 //styled components
-import {StyledTextInput, StyledFormArea, StyledFormButton, StyledLabel, Avatar, StyledTitle, colors} from "./../components/Styles"
+import {StyledTextInput, StyledFormArea, StyledFormButton, StyledLabel, Avatar, StyledTitle, colors, ButtonGroup} from "./../components/Styles"
 
 import Logo from "./../assets/favicon.png";
 
@@ -29,6 +29,9 @@ const Login = () => {
                                 label="Password"
                                 placeholder="enter password"
                             />
+                            <ButtonGroup>
+                               <StyledFormButton type="submit">Login</StyledFormButton> 
+                            </ButtonGroup>
                         </Form>
                     )}
                 </Formik>
