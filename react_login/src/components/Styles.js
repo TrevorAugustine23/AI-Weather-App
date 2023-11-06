@@ -104,3 +104,14 @@ export const ButtonGroup = styled.div`
 
     `;   
 
+export const StyledLabel = styled.p`
+    text-align: left;
+    font-size: 13px;
+    font-weight: bold;
+    `;
+
+export const StyledFormArea = styled.div`
+    background-color: ${props => props.bg || colors.light1};
+    text-align: center;
+    padding: 45px 55px;
+    `;
