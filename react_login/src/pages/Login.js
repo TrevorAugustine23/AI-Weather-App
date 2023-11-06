@@ -17,7 +17,15 @@ const Login = () => {
             <StyledFormArea>
                 <Avatar image={Logo}></Avatar>
                 <StyledTitle color={colors.theme} size={30}>Farmer Login</StyledTitle>
-                <Formik>
+                <Formik
+                    initialValues={{
+                        email: "",
+                        password:"",
+                    }}
+                    onSubmit={(values, {setSubmitting}) => {
+                        console.log(values);
+                    }}
+                    >
                     {() => (
                         <Form>
                             <TextInput
