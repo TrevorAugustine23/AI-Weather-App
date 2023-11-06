@@ -90,7 +90,8 @@ export const ButtonGroup = styled.div`
     padding-left: 50px;
     font-size: 17px;
     letter-spacing: 1px;
-    color: ${colors.light2};
+    color: ${colors.dark1};
+    background-color: ${colors.light2}
     border:0;
     outline:0;
     display: block;
