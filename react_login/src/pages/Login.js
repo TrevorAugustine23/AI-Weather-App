@@ -7,6 +7,9 @@ import Logo from "./../assets/favicon.png";
 import { Formik, Form } from "formik";
 import { TextInput } from "../components/FormLib";
 
+//icons
+import { FiMail, FiLock} from 'react-icons/fi';
+
 
 const Login = () => {
     return (
@@ -22,12 +25,15 @@ const Login = () => {
                                 type="text"
                                 label="Email Address"
                                 placeholder="enter@example.com"
+                                icon={<FiMail/>}
                             />
                             <TextInput
                                 name="password"
                                 type="password"
                                 label="Password"
                                 placeholder="enter password"
+                                icon={<FiLock/>}
+
                             />
                             <ButtonGroup>
                                <StyledFormButton type="submit">Login</StyledFormButton> 
