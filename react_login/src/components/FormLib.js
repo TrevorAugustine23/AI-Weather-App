@@ -10,7 +10,7 @@ export const TextInput = ({icon, ...props}) => {
     const [field, meta] = useField(props);
 
     return(
-        <div styled={{position:"relative"}}>
+        <div style={{position:"relative"}}>
             <StyledLabel htmlFor={props.name}>
                 {props.label}
             </StyledLabel>
