@@ -100,6 +100,14 @@ export const ButtonGroup = styled.div`
     justify-content: space-around;
     flex-direction: row;
     margin-top: 25px;
+
+    > * {
+        transition: transform 0.3s ease-in-out;
+    }
+
+    > *:hover {
+        transform: scale(1.05);
+    }
     `;
 
  //Input
@@ -176,11 +184,24 @@ export const TextLink = styled(Link)`
     text-decoration: none;
     color: ${colors.primary};
     transition: ease-in-out 0.3s;
+    position: relative;
 
-    &:hover {
-        text-decoration: underline;
-        letter-spacing: 2px;
-        font-weight: bold;
+    &:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background-color: ${colors.primary};
+        visibility: hidden;
+        transform: scaleX(0);
+        transition: all 0.3s ease-in-out 0s;
+    }
+
+    &:hover:after {
+        visibility: visible;
+        transform: scaleX(1);
     }
     `;
 
