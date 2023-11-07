@@ -1,4 +1,4 @@
-import { StyledTitle, StyledSubTitle, Avatar, StyledButton, ButtonGroup } from "../components/Styles";
+import { StyledTitle, StyledSubTitle, Avatar, StyledButton, ButtonGroup, StyledFormArea, colors } from "../components/Styles";
 import { styled } from 'styled-components';
 
 //Logo
@@ -19,15 +19,18 @@ const Dashboard = () => {
             }}>
                 <Avatar image={Logo}/>
             </div>
-            <StyledTitle size={65}>
-                Welcome to AI Weather App System
-            </StyledTitle>
-            <StyledSubTitle size={27}>
-                Feel free to explore our System
-            </StyledSubTitle>
-            <ButtonGroup><StyledButton to="#">Logout</StyledButton>
+            <StyledFormArea bg={colors.dark2}>
+                <StyledTitle size={65}>
+                    Welcome User
+                </StyledTitle>
+                <StyledSubTitle size={27}>
+                    Feel free to explore our System
+                </StyledSubTitle>
+                <ButtonGroup><StyledButton to="#">Logout</StyledButton>
+                
+                </ButtonGroup>
+            </StyledFormArea>
             
-            </ButtonGroup>
 
         </div>
     );
