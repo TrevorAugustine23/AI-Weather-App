@@ -19,8 +19,8 @@ const Home = () => {
             }}>
                 <Avatar image={Logo}/>
             </div>
-            <StyledTitle size={65}>
-                Welcome to AI Weather App System
+            <StyledTitle size={45}>
+                Unlock the possibilities with WeatherGenius, your personalized weather assistant.
             </StyledTitle>
             <StyledSubTitle size={27}>
                 Feel free to explore our System
