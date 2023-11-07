@@ -11,6 +11,9 @@ import * as Yup from 'yup';
 //icons
 import { FiMail, FiLock} from 'react-icons/fi';
 
+//Loader
+import {Loader} from 'react-loader-spinner';
+
 
 const Login = () => {
     return (
@@ -35,7 +38,7 @@ const Login = () => {
                         console.log(values);
                     }}
                     >
-                    {() => (
+                    {(isSubmitting) => (
                         <Form>
                             <TextInput
                                 name="email"
@@ -54,6 +57,14 @@ const Login = () => {
                             />
                             <ButtonGroup>
                                <StyledFormButton type="submit">Login</StyledFormButton> 
+                               {isSubmitting && (
+                                <Loader 
+                                    type="ThreeDots"
+                                    color={colors.theme}
+                                    height={49}
+                                    width={100}
+                                />
+                               )}
                             </ButtonGroup>
                         </Form>
                     )}
