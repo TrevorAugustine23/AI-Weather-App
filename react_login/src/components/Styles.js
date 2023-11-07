@@ -33,11 +33,22 @@ export const StyledContainer = styled.div`
 
 //Home
 export const StyledTitle = styled.div`
-        font-size: ${(props) => props.size}px;
-        text-align: center;
-        color: ${colors.primary};
-        padding: 5px;
-        margin-bottom: 20px;
+    font-size: ${(props) => props.size}px;
+    text-align: center;
+    color: ${colors.primary};
+    padding: 5px;
+    margin-bottom: 20px;
+    opacity: 0;
+    transition: opacity 1s ease-in; /* Add the transition effect */
+
+    /* Animation to make it appear */
+    animation: fade-in 2s ease-in forwards;
+
+    @keyframes fade-in {
+        to {
+            opacity: 1;
+        }
+    }
     `;
 
 export const StyledSubTitle = styled.div`
