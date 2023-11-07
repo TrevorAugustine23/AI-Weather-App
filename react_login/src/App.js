@@ -23,16 +23,14 @@ function App() {
     <Router>
       <StyledContainer>
         <Routes>
-          <Route path="/signup" element={<SignUp/>}>
+          <Route path='/signup' element={<SignUp/>}>
           </Route>
-          <Route path="/login">
+          <Route path='/login' element={<Login/>}>
             <Login/>
           </Route>
-          <Route path="/dashboard">
-            <Dashboard/>
+          <Route path='/dashboard' element={<Dashboard/>}>           
           </Route>
-          <Route path="/">
-            <Home/>
+          <Route path='/' element={<Home/>}>          
           </Route>
         </Routes>
     </StyledContainer>
