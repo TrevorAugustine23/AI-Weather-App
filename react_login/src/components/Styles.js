@@ -119,15 +119,19 @@ export const ButtonGroup = styled.div`
     letter-spacing: 1px;
     color: ${colors.dark1};
     background-color: ${colors.light2};
-    border: 1px solid ${colors.dark2};
+    border: 2px solid ${colors.light2};
+    border-radius: 10px;
     outline: none;
     display: block;
     margin: 5px auto 10px auto;
-    transition: ease-in-out 0.3s;
+    transition: border 0.3s, background-color 0.3s, color 0.3s;
+
+    ${(props) => props.invalid && `border-color:${colors.red}; color: ${colors.red}; background-color: ${colors.light1};`}
 
     &:focus {
-        background-color: ${colors.dark2};
-        color: ${colors.primary};
+        border-color: ${colors.theme};
+        color: ${colors.dark1};
+        background-color: ${colors.light1};
     }
 
     `;   
@@ -136,6 +140,8 @@ export const StyledLabel = styled.p`
     text-align: left;
     font-size: 13px;
     font-weight: bold;
+    color: ${colors.dark3};
+    margin-bottom: 5px;
     `;
 
 export const StyledFormArea = styled.div`
