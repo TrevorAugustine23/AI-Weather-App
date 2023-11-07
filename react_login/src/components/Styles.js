@@ -137,6 +137,22 @@ export const StyledFormButton = styled.p`
     }
     `;
 
+export const ErrorMsg = styled.div`
+    font-size: 11px;
+    color:${colors.red};
+    margin-top: 10px;
+    text-align: left;
+    `;
+
+
+export const ExtraText = styled.p`
+    font-size: ${(props) => props.size}px;
+    text-align: center;
+    color: blue;
+    padding: 2px;
+    margin-top: 10px;
+    `;
+
     //Icons
     export const StyledIcon = styled.p`
         color: ${colors.dark1};
