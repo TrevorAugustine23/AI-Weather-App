@@ -20,10 +20,10 @@ const Home = () => {
                 <Avatar image={Logo}/>
             </div>
             <StyledTitle size={45}>
-                Unlock the possibilities with WeatherGenius, your personalized weather assistant.
+                Unlock the possibilities with <b>WeatherGenius</b>, your personalized weather assistant.
             </StyledTitle>
             <StyledSubTitle size={27}>
-                Feel free to explore our System
+               <i>"Explore the world of precise forecasts, tailored just for you!"</i> 
             </StyledSubTitle>
             <ButtonGroup><StyledButton to="/login">Login</StyledButton>
             <StyledButton to="/signup">SignUp</StyledButton>
