@@ -1,6 +1,7 @@
 //pages
 import Home from './pages/Home';
 import Login from './pages/Login';
+import SignUp from './pages/Signup';
 
 //styled components
 import { StyledContainer } from "./components/Styles";
@@ -18,7 +19,7 @@ function App() {
   return (
     <Router>
       <StyledContainer>
-      <Login/>
+      <SignUp/> 
     </StyledContainer>
     </Router>
     
@@ -27,3 +28,5 @@ function App() {
 }
 
 export default App;
+
+//1:06:55
