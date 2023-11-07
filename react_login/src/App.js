@@ -11,29 +11,30 @@ import { StyledContainer } from "./components/Styles";
 // import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 import {
-  BrowserRouter as Router,
-  Switch, 
-  Route
-} from 'react-router-dom';
+  BrowserRouter as Router, 
+  Switch,
+  Route,
+  Routes,
+ 
+} from "react-router-dom";
 
 function App() {
   return (
     <Router>
       <StyledContainer>
-        <Switch>
-          <Route path="/signup">
-            <SignUp/>
+        <Routes>
+          <Route path="/signup" element={<SignUp/>}>
           </Route>
           <Route path="/login">
             <Login/>
           </Route>
           <Route path="/dashboard">
-            <SignUp/>
+            <Dashboard/>
           </Route>
           <Route path="/">
             <Home/>
           </Route>
-        </Switch>
+        </Routes>
     </StyledContainer>
     </Router>
     
