@@ -84,6 +84,14 @@ export const Avatar = styled.div`
     background-image: url(${props => props.image});
     background-position: center;
     margin: auto;
+    border: 2px solid transparent;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+        border: 2px solid ${colors.theme}; /* Change border color on hover */
+        transform: scale(1.1); /* Enlarge the Avatar on hover */
+    }
         `;
 
 export const StyledButton = styled(Link)`
@@ -141,7 +149,7 @@ export const ButtonGroup = styled.div`
 
  //Input
  export const StyledTextInput = styled.input `
-    width: 200px;
+    width: 350px;
     padding: 15px;
     padding-left: 50px;
     font-size: 17px;
@@ -217,11 +225,14 @@ export const StyledFormButton = styled.p`
     `;
 
 export const ErrorMsg = styled.div`
-    font-size: ${props => props.size}px;
-    text-align: center;
-    color: ${colors.theme};
-    padding: 2px;
+    font-size: 13px;
+    color: ${colors.red};
     margin-top: 10px;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid ${colors.red};
+    border-radius: 5px;
+    background-color: #ffebee;
     `;
 
 

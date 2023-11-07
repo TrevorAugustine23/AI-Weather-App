@@ -90,7 +90,7 @@ const SignUp = () => {
                                </StyledFormButton>
                                )}
 
-                               {isSubmitting && (
+                               {!isSubmitting && (
                                 <Audio 
                                     type="ThreeDots"
                                     color={colors.theme}

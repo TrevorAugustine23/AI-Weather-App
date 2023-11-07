@@ -61,7 +61,7 @@ const Login = () => {
                                </StyledFormButton>
                                )}
 
-                               {isSubmitting && (
+                               {!isSubmitting && (
                                 <Audio 
                                     type="ThreeDots"
                                     color={colors.theme}
