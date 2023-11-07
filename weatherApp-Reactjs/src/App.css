@@ -1,4 +1,3 @@
-
 html,
 body,
 div,
@@ -123,63 +122,94 @@ table {
 /* start editing from here */
 a {
   text-decoration: none;
+  color: #333; /* Change color as needed */
 }
+
+/* Text Alignment */
 .txt-rt {
   text-align: right;
-} /* text align right */
+}
 .txt-lt {
   text-align: left;
-} /* text align left */
+}
 .txt-center {
   text-align: center;
-} /* text align center */
+}
+
+/* Floating Elements */
 .float-rt {
   float: right;
-} /* float right */
+}
 .float-lt {
   float: left;
-} /* float left */
+}
 .clear {
   clear: both;
-} /* clear float */
+}
+
+/* Positioning */
 .pos-relative {
   position: relative;
-} /* Position Relative */
+}
 .pos-absolute {
   position: absolute;
-} /* Position Absolute */
+}
+
+/* Vertical Alignment */
 .vertical-base {
   vertical-align: baseline;
-} /* vertical align baseline */
+}
 .vertical-top {
   vertical-align: top;
-} /* vertical align top */
+}
+
+/* Underline Effect */
+.underline {
+  position: relative;
+}
+
+.underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  border-bottom: 1px solid #eee;
+}
+
+/* Padding for Underline */
 .underline {
   padding-bottom: 5px;
-  border-bottom: 1px solid #eee;
-  margin: 0 0 20px 0;
-} /* Add 5px bottom padding and a underline */
+  margin-bottom: 20px;
+}
+
+/* Navigation Menu Styles */
 nav.vertical ul li {
   display: block;
-} /* vertical menu */
+}
 nav.horizontal ul li {
   display: inline-block;
-} /* horizontal menu */
+}
+
+/* Responsive Images */
 img {
   max-width: 100%;
+  height: auto;
 }
+
+/* Time and Date Styles */
 .current-time {
-  font-size: 35px;
-  font-weight: 100;
+  font-size: 2.5rem; /* Adjust as needed */
+  font-weight: 300; /* Adjust font weight */
   margin-bottom: 10px;
   letter-spacing: 1px;
 }
+
 .current-date {
-  font-size: 18px;
-  font-weight: 100;
+  font-size: 1.125rem; /* Adjust as needed */
+  font-weight: 300; /* Adjust font weight */
   letter-spacing: 1px;
 }
-
 /*-- //Reset Code --*/
 
 /*-- Index-Page-Styling --*/
@@ -269,7 +299,7 @@ h1 {
 div#txt {
   font-size: 35px;
   font-weight: 100;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   letter-spacing: 1px;
 }
 
