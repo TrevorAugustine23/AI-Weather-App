@@ -23,9 +23,6 @@ const Dashboard = () => {
                 <StyledTitle size={65}>
                     Welcome User
                 </StyledTitle>
-                <StyledSubTitle size={27}>
-                    Feel free to explore our System
-                </StyledSubTitle>
                 <ButtonGroup><StyledButton to="#">Logout</StyledButton>
                 
                 </ButtonGroup>
