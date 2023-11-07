@@ -22,10 +22,18 @@ function App() {
       <StyledContainer>
         <Switch>
           <Route path="/signup">
-
+            <SignUp/>
+          </Route>
+          <Route path="/login">
+            <Login/>
+          </Route>
+          <Route path="/dashboard">
+            <SignUp/>
+          </Route>
+          <Route path="/">
+            <Home/>
           </Route>
         </Switch>
-      <Dashboard/> 
     </StyledContainer>
     </Router>
     
@@ -34,5 +42,3 @@ function App() {
 }
 
 export default App;
-
-//1:06:55
