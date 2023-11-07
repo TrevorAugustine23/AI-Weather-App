@@ -41,29 +41,29 @@ export const StyledTitle = styled.div`
     `;
 
 export const StyledSubTitle = styled.div`
-font-size: ${(props) => props.size}px;
-text-align: center;
-color: blue;
-padding: 5px;
-margin-bottom: 25px;
-overflow: hidden; /* Ensures the content is not revealed until the animation */
-border-right: .15em solid orange; /* The typewriter cursor */
+    font-size: ${(props) => props.size}px;
+    text-align: center;
+    color: grey;
+    padding: 5px;
+    margin-bottom: 25px;
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid ${colors.theme}; /* The typewriter cursor */
 
-white-space: nowrap; /* Keeps the content on a single line */
-margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
 
-/* Typing animation */
-animation: typing 4s steps(40, end) infinite, blink-caret 750ms step-end infinite;
+    /* Typing animation */
+    animation: typing 4s steps(40, end) infinite, blink-caret 750ms step-end infinite;
 
-@keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-}
+    @keyframes typing {
+        from { width: 0 }
+        to { width: 60% }
+    }
 
-@keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: orange; }
-}
+    @keyframes blink-caret {
+        from, to { border-color: transparent }
+        50% { border-color: ${colors.theme}; }
+    }
     `;
 
 export const Avatar = styled.div`
