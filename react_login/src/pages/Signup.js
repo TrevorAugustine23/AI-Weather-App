@@ -36,6 +36,9 @@ const SignUp = () => {
                             .required("Required"),
                             password: Yup.string().min(8, "Password is too short").max(30, "Password is too long")
                             .required("Required"),
+                            name: Yup.string().required("Required"),
+                            dateOfBirth: Yup.date().required("Required"),
+                            repeatPassword: Yup.string().required("Required").oneOf([Yup.ref("password")], "Passwords must match")
                         })
                     }
                     onSubmit={(values, {setSubmitting}) => {
