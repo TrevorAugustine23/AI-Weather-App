@@ -12,7 +12,7 @@ import * as Yup from 'yup';
 import { FiMail, FiLock} from 'react-icons/fi';
 
 //Loader
-import {Loader} from 'react-loader-spinner';
+import {Audio} from 'react-loader-spinner';
 
 
 const Login = () => {
@@ -56,13 +56,17 @@ const Login = () => {
 
                             />
                             <ButtonGroup>
-                               <StyledFormButton type="submit">Login</StyledFormButton> 
                                {isSubmitting && (
-                                <Loader 
+                               <StyledFormButton type="submit">Login
+                               </StyledFormButton>
+                               )}
+
+                               {isSubmitting && (
+                                <Audio 
                                     type="ThreeDots"
                                     color={colors.theme}
                                     height={49}
-                                    width={100}
+                                    width={50}
                                 />
                                )}
                             </ButtonGroup>
