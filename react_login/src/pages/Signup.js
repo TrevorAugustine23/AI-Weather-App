@@ -13,7 +13,7 @@ import { FiMail, FiLock, FiUser, FiCalendar} from 'react-icons/fi';
 
 //Loader
 import {Audio} from 'react-loader-spinner';
-import SignUp from './Signup';
+
 
 
 
@@ -95,7 +95,7 @@ const SignUp = () => {
                                     type="ThreeDots"
                                     color={colors.theme}
                                     height={49}
-                                    width={50}
+                                    width={30}
                                 />
                                )}
                             </ButtonGroup>
@@ -103,7 +103,7 @@ const SignUp = () => {
                     )}
                 </Formik>
                 <ExtraText>
-                    New Here? <TextLink to="/signup">Signup</TextLink>
+                    Already have an account? <TextLink to="/login">Login</TextLink>
                 </ExtraText>
             </StyledFormArea>
             <CopyrightText>
