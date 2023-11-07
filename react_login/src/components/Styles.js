@@ -68,10 +68,30 @@ export const StyledButton = styled(Link)`
     text-decoration: none;
     text-align: center;
     transition: 0.3s;
-    
-    &:hover {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 300px;
+        height: 300px;
         background-color: ${colors.primary};
-        cursor: pointer;
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        transition: all 0.4s ease-in-out;
+        z-index: -1;
+    }
+
+    &:hover::before {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    &:hover {
+        color: ${colors.theme};
     }
     `;
 
