@@ -1,14 +1,18 @@
 //styled components
-import {StyledTextInput, StyledFormArea, StyledFormButton, StyledLabel, Avatar, StyledTitle, colors, ButtonGroup} from "./../components/Styles"
+import {StyledTextInput, StyledFormArea, StyledFormButton, StyledLabel, Avatar, StyledTitle, colors, ButtonGroup, ExtraText, TextLink, CopyrightText} from "./../components/Styles"
 
 import Logo from "./../assets/favicon.png";
 
 //formik
 import { Formik, Form } from "formik";
 import { TextInput } from "../components/FormLib";
+import * as Yup from 'yup';
 
 //icons
 import { FiMail, FiLock} from 'react-icons/fi';
+
+//Loader
+import {Audio} from 'react-loader-spinner';
 
 
 const Login = () => {
@@ -22,11 +26,19 @@ const Login = () => {
                         email: "",
                         password:"",
                     }}
+                    validationSchema={
+                        Yup.object({
+                            email: Yup.string().email("Invalid email address")
+                            .required("Required"),
+                            password: Yup.string().min(8, "Password is too short").max(30, "Password is too long")
+                            .required("Required"),
+                        })
+                    }
                     onSubmit={(values, {setSubmitting}) => {
                         console.log(values);
                     }}
                     >
-                    {() => (
+                    {(isSubmitting) => (
                         <Form>
                             <TextInput
                                 name="email"
@@ -44,12 +56,30 @@ const Login = () => {
 
                             />
                             <ButtonGroup>
-                               <StyledFormButton type="submit">Login</StyledFormButton> 
+                               {isSubmitting && (
+                               <StyledFormButton type="submit">Login
+                               </StyledFormButton>
+                               )}
+
+                               {isSubmitting && (
+                                <Audio 
+                                    type="ThreeDots"
+                                    color={colors.theme}
+                                    height={49}
+                                    width={50}
+                                />
+                               )}
                             </ButtonGroup>
                         </Form>
                     )}
                 </Formik>
+                <ExtraText>
+                    New Here? <TextLink to="/signup">Signup</TextLink>
+                </ExtraText>
             </StyledFormArea>
+            <CopyrightText>
+                134780 BBIT 4C &copy; 2023
+            </CopyrightText>
         </div>
     )
 }
