@@ -90,14 +90,12 @@ export const ButtonGroup = styled.div`
     font-size: 17px;
     letter-spacing: 1px;
     color: ${colors.dark1};
-    background-color: ${colors.light2}
-    border:0;
-    outline:0;
+    background-color: ${colors.light2};
+    border: 1px solid ${colors.dark2};
+    outline: none;
     display: block;
     margin: 5px auto 10px auto;
     transition: ease-in-out 0.3s;
-
-    ${(props) => props.invalid && `background-color:${colors.red}; color: ${colors.primary};`}
 
     &:focus {
         background-color: ${colors.dark2};
@@ -137,10 +135,11 @@ export const StyledFormButton = styled.p`
     `;
 
 export const ErrorMsg = styled.div`
-    font-size: 11px;
-    color:${colors.red};
+    font-size: ${props => props.size}px;
+    text-align: center;
+    color: ${colors.theme};
+    padding: 2px;
     margin-top: 10px;
-    text-align: left;
     `;
 
 
@@ -155,12 +154,12 @@ export const ExtraText = styled.p`
 
 export const TextLink = styled(Link)`
     text-decoration: none;
-    color: ${colors.theme};
+    color: ${colors.primary};
     transition: ease-in-out 0.3s;
-    
+
     &:hover {
         text-decoration: underline;
-        letter spacing: 2px;
+        letter-spacing: 2px;
         font-weight: bold;
     }
     `;
