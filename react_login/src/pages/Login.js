@@ -1,7 +1,7 @@
 //styled components
 import {StyledTextInput, StyledFormArea, StyledFormButton, StyledLabel, Avatar, StyledTitle, colors, ButtonGroup, ExtraText, TextLink, CopyrightText} from "./../components/Styles"
 
-import Logo from "./../assets/favicon.png";
+import Logo from "./../assets/favicon2.jpg";
 
 //formik
 import { Formik, Form } from "formik";

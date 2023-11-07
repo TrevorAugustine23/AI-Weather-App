@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 //background
-import background from './../assets/favicon.png';
+import background from './../assets/bg2.jpg';
 
 //React router
 import { Link } from "react-router-dom";
