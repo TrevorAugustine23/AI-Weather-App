@@ -9,43 +9,43 @@ import { Link } from "react-router-dom";
 import { TextInput } from './FormLib';
 
 export const colors ={
-    primary: "#fff",
-    theme: "#BE185D",
-    light1: "#F3F4F6",
-    light2: "#E5E7EB",
-    dark1: "#1F2937",
-    dark2: "#4B5563",
-    dark3: "#9CA3AF",
-    red: "#DC2626"
+        primary: "#333",
+        theme: "#BE185D",
+        light1: "#F3F4F6",
+        light2: "#E5E7EB",
+        dark1: "#1F2937",
+        dark2: "#4B5563",
+        dark3: "#9CA3AF",
+        red: "#DC2626"
 }
 
 //Styled components
 export const StyledContainer = styled.div`
-    margin:0;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient (0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${background});
-    background-size: cover;
-    background-attachment: fixed;
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(0deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url(${background});
+        background-size: cover;
+        background-attachment: fixed;
     `;
 
 //Home
 export const StyledTitle = styled.div`
-    font-size: ${(props) => props.size}px;
-    text-align: center;
-    color: blue;
-    padding: 5px;
-    margin-bottom: 20px;
+        font-size: ${(props) => props.size}px;
+        text-align: center;
+        color: ${colors.primary};
+        padding: 5px;
+        margin-bottom: 20px;
     `;
 
 export const StyledSubTitle = styled.div`
-    font-size: ${(props) => props.size}px;
-    text-align: center;
-    color: blue;
-    padding: 5px;
-    margin-bottom: 25px;
+        font-size: ${(props) => props.size}px;
+        text-align: center;
+        color: ${colors.primary};
+        padding: 5px;
+        margin-bottom: 25px;
     `;
 
 export const Avatar = styled.div`
@@ -58,23 +58,21 @@ export const Avatar = styled.div`
         `;
 
 export const StyledButton = styled(Link)`
-    padding: 10px;
+    padding: 10px 20px;
     width: 150px;
-    background-color: transparent;
+    background-color: ${colors.primary};
     font-size: 16px;
-    border: 3px solid black;
+    border: none;
     border-radius: 25px;
-    color: blue;
+    color: #fff;
     text-decoration: none;
     text-align: center;
-    transition: ease-in-out 0.3s;
+    transition: 0.3s;
     
     &:hover {
-        background-color: ${colors.primary};
-        color: ${colors.theme};
+        background-color: ${colors.theme};
         cursor: pointer;
-
-    }
+      }
     `;
 
 export const ButtonGroup = styled.div`
@@ -182,5 +180,5 @@ export const CopyrightText = styled.p`
     padding: 5px;
     margin: 20px;
     text:align: center;
-    color: ${colors.light2}
+    color: black
     `;
