@@ -13,6 +13,7 @@ import { FiMail, FiLock, FiUser, FiCalendar} from 'react-icons/fi';
 
 //Loader
 import {Audio} from 'react-loader-spinner';
+import SignUp from './Signup';
 
 
 
@@ -52,7 +53,7 @@ const SignUp = () => {
                                 type="text"
                                 label="Full Name"
                                 placeholder="Denis Mutunga"
-                                icon={<FiMail/>}
+                                icon={<FiUser/>}
                             />
                             <TextInput
                                 name="email"
@@ -65,7 +66,7 @@ const SignUp = () => {
                                 name="dateOfBirth"
                                 type="date"
                                 label="Date of Birth"
-                                icon={<FiMail/>}
+                                icon={<FiCalendar/>}
                             />
                             <TextInput
                                 name="password"
@@ -85,7 +86,7 @@ const SignUp = () => {
                             />
                             <ButtonGroup>
                                {isSubmitting && (
-                               <StyledFormButton type="submit">Login
+                               <StyledFormButton type="submit">SignUp
                                </StyledFormButton>
                                )}
 
