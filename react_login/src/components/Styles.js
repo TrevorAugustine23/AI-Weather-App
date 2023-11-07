@@ -33,19 +33,48 @@ export const StyledContainer = styled.div`
 
 //Home
 export const StyledTitle = styled.div`
-        font-size: ${(props) => props.size}px;
-        text-align: center;
-        color: ${colors.primary};
-        padding: 5px;
-        margin-bottom: 20px;
+    font-size: ${(props) => props.size}px;
+    text-align: center;
+    color: ${colors.primary};
+    padding: 5px;
+    margin-bottom: 20px;
+    opacity: 0;
+    transition: opacity 1s ease-in; /* Add the transition effect */
+
+    /* Animation to make it appear */
+    animation: fade-in 2s ease-in forwards;
+
+    @keyframes fade-in {
+        to {
+            opacity: 1;
+        }
+    }
     `;
 
 export const StyledSubTitle = styled.div`
-        font-size: ${(props) => props.size}px;
-        text-align: center;
-        color: ${colors.primary};
-        padding: 5px;
-        margin-bottom: 25px;
+    font-size: ${(props) => props.size}px;
+    text-align: center;
+    color: grey;
+    padding: 5px;
+    margin-bottom: 25px;
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid ${colors.theme}; /* The typewriter cursor */
+
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+
+    /* Typing animation */
+    animation: typing 4s steps(40, end) infinite, blink-caret 750ms step-end infinite;
+
+    @keyframes typing {
+        from { width: 0 }
+        to { width: 60% }
+    }
+
+    @keyframes blink-caret {
+        from, to { border-color: transparent }
+        50% { border-color: ${colors.theme}; }
+    }
     `;
 
 export const Avatar = styled.div`
@@ -60,7 +89,7 @@ export const Avatar = styled.div`
 export const StyledButton = styled(Link)`
     padding: 10px 20px;
     width: 150px;
-    background-color: ${colors.primary};
+    background-color: ${colors.theme};
     font-size: 16px;
     border: none;
     border-radius: 25px;
@@ -68,11 +97,31 @@ export const StyledButton = styled(Link)`
     text-decoration: none;
     text-align: center;
     transition: 0.3s;
-    
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 300px;
+        height: 300px;
+        background-color: ${colors.primary};
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        transition: all 0.4s ease-in-out;
+        z-index: -1;
+    }
+
+    &:hover::before {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
     &:hover {
-        background-color: ${colors.theme};
-        cursor: pointer;
-      }
+        color: ${colors.theme};
+    }
     `;
 
 export const ButtonGroup = styled.div`
@@ -80,6 +129,14 @@ export const ButtonGroup = styled.div`
     justify-content: space-around;
     flex-direction: row;
     margin-top: 25px;
+
+    > * {
+        transition: transform 0.3s ease-in-out;
+    }
+
+    > *:hover {
+        transform: scale(1.05);
+    }
     `;
 
  //Input
@@ -90,18 +147,20 @@ export const ButtonGroup = styled.div`
     font-size: 17px;
     letter-spacing: 1px;
     color: ${colors.dark1};
-    background-color: ${colors.light2}
-    border:0;
-    outline:0;
+    background-color: ${colors.light2};
+    border: 2px solid ${colors.light2};
+    border-radius: 10px;
+    outline: none;
     display: block;
     margin: 5px auto 10px auto;
-    transition: ease-in-out 0.3s;
+    transition: border 0.3s, background-color 0.3s, color 0.3s;
 
-    ${(props) => props.invalid && `background-color:${colors.red}; color: ${colors.primary};`}
+    ${(props) => props.invalid && `border-color:${colors.red}; color: ${colors.red}; background-color: ${colors.light1};`}
 
     &:focus {
-        background-color: ${colors.dark2};
-        color: ${colors.primary};
+        border-color: ${colors.theme};
+        color: ${colors.dark1};
+        background-color: ${colors.light1};
     }
 
     `;   
@@ -110,37 +169,59 @@ export const StyledLabel = styled.p`
     text-align: left;
     font-size: 13px;
     font-weight: bold;
+    color: ${colors.dark3};
+    margin-bottom: 5px;
     `;
 
 export const StyledFormArea = styled.div`
     background-color: ${props => props.bg || colors.light1};
     text-align: center;
-    padding: 45px 55px;
+    padding: 45px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     `;
 
 export const StyledFormButton = styled.p`
-    padding: 10px;
-    width: 150px;
-    background-color: transparent;
+    padding: 15px;
+    width: 200px;
+    background-color: ${colors.primary};
     font-size: 16px;
-    border: 2px solid black;
+    border: none;
     border-radius: 25px;
-    color: blue;
-    transition: ease-in-out 0.3s;
-    
-    &:hover {
-        background-color: ${colors.theme};
-        color: ${colors.primary};
-        cursor: pointer;
+    color: #fff;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 
+    &:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 200%;
+        height: 200%;
+        background: ${colors.theme};
+        transition: all 0.3s ease;
+        border-radius: 50%;
+        z-index: 0;
+        transform: translate(-50%, -50%) scale(0);
+    }
+
+    &:hover:before {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    &:hover {
+        color: ${colors.primary};
     }
     `;
 
 export const ErrorMsg = styled.div`
-    font-size: 11px;
-    color:${colors.red};
+    font-size: ${props => props.size}px;
+    text-align: center;
+    color: ${colors.theme};
+    padding: 2px;
     margin-top: 10px;
-    text-align: left;
     `;
 
 
@@ -155,18 +236,31 @@ export const ExtraText = styled.p`
 
 export const TextLink = styled(Link)`
     text-decoration: none;
-    color: ${colors.theme};
-    transition: ease-in-out 0.3s;
-    
-    &:hover {
-        text-decoration: underline;
-        letter spacing: 2px;
-        font-weight: bold;
+    color: ${colors.primary};
+    transition: background-color 0.3s, color 0.3s;
+    position: relative;
+
+    &:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background-color: ${colors.primary};
+        visibility: hidden;
+        transform: scaleX(0);
+        transition: all 0.3s ease-in-out 0s;
+    }
+
+    &:hover:after {
+        visibility: visible;
+        transform: scaleX(1);
     }
     `;
 
-    //Icons
-    export const StyledIcon = styled.p`
+//Icons
+export const StyledIcon = styled.p`
         color: ${colors.dark1};
         position: absolute;
         font-size: 21px;
@@ -179,6 +273,6 @@ export const TextLink = styled(Link)`
 export const CopyrightText = styled.p`
     padding: 5px;
     margin: 20px;
-    text:align: center;
-    color: black
+    text-align: center;
+    color: ${colors.dark1}
     `;
