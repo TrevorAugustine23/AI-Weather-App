@@ -19,7 +19,7 @@ const Dashboard = () => {
             }}>
                 <Avatar image={Logo}/>
             </div>
-            <StyledFormArea bg={colors.dark2}>
+            <StyledFormArea>
                 <StyledTitle size={65}>
                     Welcome User
                 </StyledTitle>
