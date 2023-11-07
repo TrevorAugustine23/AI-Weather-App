@@ -9,7 +9,7 @@ import { TextInput } from "../components/FormLib";
 import * as Yup from 'yup';
 
 //icons
-import { FiMail, FiLock} from 'react-icons/fi';
+import { FiMail, FiLock, FiUser, FiCalendar} from 'react-icons/fi';
 
 //Loader
 import {Audio} from 'react-loader-spinner';
@@ -48,6 +48,13 @@ const SignUp = () => {
                     {(isSubmitting) => (
                         <Form>
                             <TextInput
+                                name="name"
+                                type="text"
+                                label="Full Name"
+                                placeholder="Denis Mutunga"
+                                icon={<FiMail/>}
+                            />
+                            <TextInput
                                 name="email"
                                 type="text"
                                 label="Email Address"
@@ -55,10 +62,24 @@ const SignUp = () => {
                                 icon={<FiMail/>}
                             />
                             <TextInput
+                                name="dateOfBirth"
+                                type="date"
+                                label="Date of Birth"
+                                icon={<FiMail/>}
+                            />
+                            <TextInput
                                 name="password"
                                 type="password"
                                 label="Password"
                                 placeholder="enter password"
+                                icon={<FiLock/>}
+
+                            />
+                            <TextInput
+                                name="repeatPassword"
+                                type="password"
+                                label="Confirm Password"
+                                placeholder="confirm password"
                                 icon={<FiLock/>}
 
                             />
