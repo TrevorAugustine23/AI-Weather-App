@@ -25,8 +25,8 @@ const Dashboard = () => {
             <StyledSubTitle size={27}>
                 Feel free to explore our System
             </StyledSubTitle>
-            <ButtonGroup><StyledButton to="/login">Login</StyledButton>
-            <StyledButton to="/signup">SignUp</StyledButton>
+            <ButtonGroup><StyledButton to="#">Logout</StyledButton>
+            
             </ButtonGroup>
 
         </div>
