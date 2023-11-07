@@ -41,11 +41,22 @@ export const StyledTitle = styled.div`
     `;
 
 export const StyledSubTitle = styled.div`
-        font-size: ${(props) => props.size}px;
-        text-align: center;
-        color: ${colors.primary};
-        padding: 5px;
-        margin-bottom: 25px;
+    font-size: ${(props) => props.size}px;
+    text-align: center;
+    color: grey;
+    padding: 5px;
+    margin-bottom: 25px;
+    overflow: hidden; 
+    border-right: .15em solid black; 
+
+    white-space: nowrap;
+    margin: 0 auto; 
+
+    animation: typing 10s steps(40, end) infinite;
+    @keyframes typing {
+        from { width: 0 }
+        to { width: 60% }
+    }
     `;
 
 export const Avatar = styled.div`
