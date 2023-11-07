@@ -178,6 +178,6 @@ export const TextLink = styled(Link)`
 export const CopyrightText = styled.p`
     padding: 5px;
     margin: 20px;
-    text:align: center;
-    color: black
+    text-align: center;
+    color: ${colors.dark1}
     `;
