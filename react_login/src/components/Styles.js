@@ -6,6 +6,7 @@ import background from './../assets/favicon.png';
 //React router
 import { Link } from "react-router-dom";
 // import { StyledTitle } from './Styles';
+import { TextInput } from './FormLib';
 
 export const colors ={
     primary: "#fff",
@@ -153,6 +154,19 @@ export const ExtraText = styled.p`
     margin-top: 10px;
     `;
 
+
+export const TextLink = styled(Link)`
+    text-decoration: none;
+    color: ${colors.theme};
+    transition: ease-in-out 0.3s;
+    
+    &:hover {
+        text-decoration: underline;
+        letter spacing: 2px;
+        font-weight: bold;
+    }
+    `;
+
     //Icons
     export const StyledIcon = styled.p`
         color: ${colors.dark1};
@@ -161,4 +175,12 @@ export const ExtraText = styled.p`
         top: 35px;
         ${(props) => props.right && `right: 15px;`}
         ${(props) => !props.right && `left: 15px;`}
-        `
+        `;
+
+//Copyright
+export const CopyrightText = styled.p`
+    padding: 5px;
+    margin: 20px;
+    text:align: center;
+    color: ${colors.light2}
+    `;
