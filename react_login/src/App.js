@@ -20,6 +20,11 @@ function App() {
   return (
     <Router>
       <StyledContainer>
+        <Switch>
+          <Route path="/signup">
+
+          </Route>
+        </Switch>
       <Dashboard/> 
     </StyledContainer>
     </Router>
