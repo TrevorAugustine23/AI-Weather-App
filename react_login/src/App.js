@@ -2,6 +2,7 @@
 import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/Signup';
+import Dashboard from './pages/Dashboard';
 
 //styled components
 import { StyledContainer } from "./components/Styles";
@@ -19,7 +20,7 @@ function App() {
   return (
     <Router>
       <StyledContainer>
-      <SignUp/> 
+      <Dashboard/> 
     </StyledContainer>
     </Router>
     
