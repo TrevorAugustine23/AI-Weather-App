@@ -1,5 +1,5 @@
 //styled components
-import {StyledTextInput, StyledFormArea, StyledFormButton, StyledLabel, Avatar, StyledTitle, colors, ButtonGroup, ExtraText, TextLink} from "./../components/Styles"
+import {StyledTextInput, StyledFormArea, StyledFormButton, StyledLabel, Avatar, StyledTitle, colors, ButtonGroup, ExtraText, TextLink, CopyrightText} from "./../components/Styles"
 
 import Logo from "./../assets/favicon.png";
 
@@ -62,6 +62,9 @@ const Login = () => {
                     New Here? <TextLink to="/signup">Signup</TextLink>
                 </ExtraText>
             </StyledFormArea>
+            <CopyrightText>
+                134780 BBIT 4C &copy; 2023
+            </CopyrightText>
         </div>
     )
 }
