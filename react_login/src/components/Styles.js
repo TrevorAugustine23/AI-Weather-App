@@ -147,24 +147,43 @@ export const StyledLabel = styled.p`
 export const StyledFormArea = styled.div`
     background-color: ${props => props.bg || colors.light1};
     text-align: center;
-    padding: 45px 55px;
+    padding: 45px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     `;
 
 export const StyledFormButton = styled.p`
-    padding: 10px;
-    width: 150px;
-    background-color: transparent;
+    padding: 15px;
+    width: 200px;
+    background-color: ${colors.primary};
     font-size: 16px;
-    border: 2px solid black;
+    border: none;
     border-radius: 25px;
-    color: blue;
-    transition: ease-in-out 0.3s;
-    
-    &:hover {
-        background-color: ${colors.theme};
-        color: ${colors.primary};
-        cursor: pointer;
+    color: #fff;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 
+    &:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 200%;
+        height: 200%;
+        background: ${colors.theme};
+        transition: all 0.3s ease;
+        border-radius: 50%;
+        z-index: 0;
+        transform: translate(-50%, -50%) scale(0);
+    }
+
+    &:hover:before {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    &:hover {
+        color: ${colors.primary};
     }
     `;
 
@@ -189,7 +208,7 @@ export const ExtraText = styled.p`
 export const TextLink = styled(Link)`
     text-decoration: none;
     color: ${colors.primary};
-    transition: ease-in-out 0.3s;
+    transition: background-color 0.3s, color 0.3s;
     position: relative;
 
     &:after {
@@ -211,8 +230,8 @@ export const TextLink = styled(Link)`
     }
     `;
 
-    //Icons
-    export const StyledIcon = styled.p`
+//Icons
+export const StyledIcon = styled.p`
         color: ${colors.dark1};
         position: absolute;
         font-size: 21px;
