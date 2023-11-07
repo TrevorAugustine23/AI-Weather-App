@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 //Logo
 import Logo from "./../assets/favicon.png"
 
-const Home = () => {
+const Dashboard = () => {
     return (
 
         <div>
@@ -33,4 +33,4 @@ const Home = () => {
     );
 }
 
-export default Home;
+export default Dashboard;
