@@ -60,7 +60,7 @@ export const Avatar = styled.div`
 export const StyledButton = styled(Link)`
     padding: 10px 20px;
     width: 150px;
-    background-color: ${colors.primary};
+    background-color: ${colors.theme};
     font-size: 16px;
     border: none;
     border-radius: 25px;
@@ -70,9 +70,9 @@ export const StyledButton = styled(Link)`
     transition: 0.3s;
     
     &:hover {
-        background-color: ${colors.theme};
+        background-color: ${colors.primary};
         cursor: pointer;
-      }
+    }
     `;
 
 export const ButtonGroup = styled.div`
