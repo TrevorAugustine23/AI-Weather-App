@@ -1,4 +1,4 @@
-export const loginUser = () => {
+export const loginUser = (credentials, history, setFieldError, setSubmitting) => {
 
 }
 
