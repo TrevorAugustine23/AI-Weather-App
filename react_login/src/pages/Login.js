@@ -14,8 +14,15 @@ import { FiMail, FiLock} from 'react-icons/fi';
 //Loader
 import {Audio} from 'react-loader-spinner';
 
+//auth & redux
+import { connect } from "react-redux";
+import { loginUser } from "../auth/actions/userActions";
 
-const Login = () => {
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
+
+const Login = (loginUser) => {
+    const history = useHistory();
     return (
         <div>
             <StyledFormArea>
@@ -34,8 +41,9 @@ const Login = () => {
                             .required("Required"),
                         })
                     }
-                    onSubmit={(values, {setSubmitting}) => {
+                    onSubmit={(values, {setSubmitting, setFieldError}) => {
                         console.log(values);
+                        loginUser(values, history, setFieldError, setSubmitting);
                     }}
                     >
                     {(isSubmitting) => (
@@ -84,6 +92,6 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default connect(null, {loginUser}) (Login);
 
 //50:36
