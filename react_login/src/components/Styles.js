@@ -138,10 +138,6 @@ export const ButtonGroup = styled.div`
     flex-direction: row;
     margin-top: 25px;
 
-    > * {
-        transition: transform 0.3s ease-in-out;
-    }
-
     > *:hover {
         transform: scale(1.05);
     }
@@ -201,26 +197,27 @@ export const StyledFormButton = styled.p`
     position: relative;
     overflow: hidden;
 
-    &:before {
-        content: "";
+    &::before {
+        content: '';
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 200%;
-        height: 200%;
-        background: ${colors.theme};
-        transition: all 0.3s ease;
+        width: 300px;
+        height: 300px;
+        background-color: ${colors.primary};
         border-radius: 50%;
-        z-index: 0;
         transform: translate(-50%, -50%) scale(0);
+        transition: all 0.4s ease-in-out;
+        z-index: -1;
     }
 
-    &:hover:before {
+    &:hover::before {
         transform: translate(-50%, -50%) scale(1);
     }
 
     &:hover {
-        color: ${colors.primary};
+        color: ${colors.theme};
+        cursor: pointer;
     }
     `;
 

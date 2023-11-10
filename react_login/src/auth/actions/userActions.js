@@ -3,14 +3,13 @@ import axios from 'axios';
 
 import { sessionService } from 'redux-react-session';
 
-const API_BASE_URL = 'http://localhost:8000/api'; // Replace with your server's URL
-
+const API_BASE_URL = 'http://localhost:8000/user'; // Replace with your server's URL
 export const loginUser = (credentials, history, setFieldError, setSubmitting) => {
     axios.post(`${API_BASE_URL}/login`, 
     credentials,
     {
         headers:{
-            "Content-Type": "application.json"
+            "Content-Type": "application/json"
         }
     }
     ).then(response => {
@@ -33,11 +32,16 @@ export const loginUser = (credentials, history, setFieldError, setSubmitting) =>
 
                 sessionService.saveSession(token).then(() => {
                     sessionService.saveUser(userData).then(() => {
-                        history.push("/dashboard")
+                        history.push("/dashboard");
                     }).catch(err => console.error(err))
                 }).catch(err => console.error(err))
             }
-    }).catch(err => console.error(err))
+
+            //complete submission
+            setSubmitting( false);
+
+}).catch(err => console.error(err))
+
 }
 
 export const signupUser = (credentials, history, setFieldError, setSubmitting) => {

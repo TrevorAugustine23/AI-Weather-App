@@ -12,7 +12,7 @@ import * as Yup from 'yup';
 import { FiMail, FiLock} from 'react-icons/fi';
 
 //Loader
-import {Audio} from 'react-loader-spinner';
+import { Audio } from 'react-loader-spinner';
 
 //auth & redux
 import { connect } from "react-redux";
@@ -65,17 +65,17 @@ const Login = (loginUser) => {
                             />
                             <ButtonGroup>
                                {isSubmitting && (
-                               <StyledFormButton type="submit">Login
-                               </StyledFormButton>
+                               <StyledFormButton type="submit"  onClick={() => {
+                                console.log('Button clicked!');}}  
+                                >Login
+                                 </StyledFormButton>
                                )}
-
-                               {!isSubmitting && (
+                                {isSubmitting && (
                                 <Audio 
                                     type="ThreeDots"
-                                    color={colors.theme}
-                                    height={49}
-                                    width={50}
-                                />
+                                    height={30} 
+                                    width={30} 
+                                    />
                                )}
                             </ButtonGroup>
                         </Form>
