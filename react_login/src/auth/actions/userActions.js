@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ErrorMessage } from 'formik';
+
 
 import { sessionService } from 'redux-react-session';
 
@@ -33,7 +33,7 @@ export const loginUser = (credentials, history, setFieldError, setSubmitting) =>
 
                 sessionService.saveSession(token).then(() => {
                     sessionService.saveUser(userData).then(() => {
-
+                        history.push("/dashboard")
                     }).catch(err => console.error(err))
                 }).catch(err => console.error(err))
             }
