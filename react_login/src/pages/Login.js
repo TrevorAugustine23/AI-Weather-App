@@ -41,9 +41,15 @@ const Login = (loginUser) => {
                             .required("Required"),
                         })
                     }
-                    onSubmit={(values, {setSubmitting, setFieldError}) => {
-                        console.log(values);
-                        loginUser(values, history, setFieldError, setSubmitting);
+                    onSubmit={async (values, {setSubmitting, setFieldError}) => {
+                        try{
+                            console.log(values);
+                            await loginUser(values, history, setFieldError, setSubmitting);
+                            history.push("/dashboard");
+
+                        } catch(err){
+                            console.error("Login failed:", err);
+                        }
                     }}
                     >
                     {(isSubmitting) => (
@@ -65,10 +71,8 @@ const Login = (loginUser) => {
                             />
                             <ButtonGroup>
                                {isSubmitting && (
-                               <StyledFormButton type="submit"  onClick={() => {
-                                console.log('Button clicked!');}}  
-                                >Login
-                                 </StyledFormButton>
+                               <StyledFormButton type="submit" onClick={()=> Login()}>Login 
+                                </StyledFormButton>
                                )}
                                 {isSubmitting && (
                                 <Audio 

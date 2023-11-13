@@ -3,9 +3,9 @@ import axios from 'axios';
 
 import { sessionService } from 'redux-react-session';
 
-const API_BASE_URL = 'http://localhost:8000/api'; // Replace with your server's URL
+const API_BASE_URL = 'http://localhost:8000'; // Replace with your server's URL
 export const loginUser = (credentials, history, setFieldError, setSubmitting) => {
-    axios.post(`${API_BASE_URL}/login`, 
+    axios.post(`${API_BASE_URL}user/signin`, 
     credentials,
     {
         headers:{
