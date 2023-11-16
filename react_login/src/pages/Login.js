@@ -1,5 +1,5 @@
 //styled components
-import {StyledTextInput, StyledFormArea, StyledFormButton, StyledLabel, Avatar, StyledTitle, colors, ButtonGroup, ExtraText, TextLink, CopyrightText} from "./../components/Styles"
+import {StyledTextInput, StyledFormArea, StyledButton, StyledLabel, Avatar, StyledTitle, colors, ButtonGroup, ExtraText, TextLink, CopyrightText} from "./../components/Styles"
 
 import Logo from "./../assets/favicon2.jpg";
 
@@ -18,7 +18,7 @@ import { Audio } from 'react-loader-spinner';
 import { connect } from "react-redux";
 import { loginUser } from "../auth/actions/userActions";
 
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom";
 
 
 const Login = (loginUser) => {
@@ -45,7 +45,6 @@ const Login = (loginUser) => {
                         try{
                             console.log(values);
                             await loginUser(values, history, setFieldError, setSubmitting);
-                            history.push("/dashboard");
 
                         } catch(err){
                             console.error("Login failed:", err);
@@ -71,8 +70,8 @@ const Login = (loginUser) => {
                             />
                             <ButtonGroup>
                                {isSubmitting && (
-                               <StyledFormButton type="submit" onClick={()=> Login()}>Login 
-                                </StyledFormButton>
+                               <StyledButton type="submit">Login 
+                                </StyledButton>
                                )}
                                 {isSubmitting && (
                                 <Audio 
@@ -97,5 +96,3 @@ const Login = (loginUser) => {
 }
 
 export default connect(null, {loginUser}) (Login);
-
-//50:36
