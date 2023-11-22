@@ -2,7 +2,7 @@ import { StyledTitle, StyledSubTitle, Avatar, StyledButton, ButtonGroup, StyledF
 import { styled } from 'styled-components';
 
 //Logo
-import Logo from "./../assets/favicon.png"
+import Logo from "./../assets/favicon2.jpg"
 
 const Dashboard = () => {
     return (

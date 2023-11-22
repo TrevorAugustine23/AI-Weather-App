@@ -1,7 +1,7 @@
 //styled components
 import {StyledTextInput, StyledFormArea, StyledFormButton, StyledLabel, Avatar, StyledTitle, colors, ButtonGroup, ExtraText, TextLink, CopyrightText} from "./../components/Styles"
 
-import Logo from "./../assets/favicon.png";
+import Logo from "./../assets/favicon2.jpg";
 
 //formik
 import { Formik, Form } from "formik";
@@ -14,10 +14,17 @@ import { FiMail, FiLock, FiUser, FiCalendar} from 'react-icons/fi';
 //Loader
 import {Audio} from 'react-loader-spinner';
 
+//auth & redux
+import { connect } from "react-redux";
+import { signupUser } from "../auth/actions/userActions";
+
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
 
-const SignUp = () => {
+
+const SignUp = (signupUser) => {
+    const history = useHistory();
     return (
         <div>
             <StyledFormArea>
@@ -42,8 +49,8 @@ const SignUp = () => {
                             repeatPassword: Yup.string().required("Required").oneOf([Yup.ref("password")], "Passwords must match")
                         })
                     }
-                    onSubmit={(values, {setSubmitting}) => {
-                        console.log(values);
+                    onSubmit={(values, {setSubmitting, setFieldError}) => {
+                        signupUser(values, history, setFieldError, setSubmitting)
                     }}
                     >
                     {(isSubmitting) => (
@@ -90,7 +97,7 @@ const SignUp = () => {
                                </StyledFormButton>
                                )}
 
-                               {isSubmitting && (
+                               {!isSubmitting && (
                                 <Audio 
                                     type="ThreeDots"
                                     color={colors.theme}
@@ -113,6 +120,5 @@ const SignUp = () => {
     )
 }
 
-export default SignUp;
+export default connect(null, {signupUser}) (SignUp);
 
-//50:36

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 //background
-import background from './../assets/favicon.png';
+import background from './../assets/bg2.jpg';
 
 //React router
 import { Link } from "react-router-dom";
@@ -84,6 +84,14 @@ export const Avatar = styled.div`
     background-image: url(${props => props.image});
     background-position: center;
     margin: auto;
+    border: 2px solid transparent;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+        border: 2px solid ${colors.theme}; /* Change border color on hover */
+        transform: scale(1.1); /* Enlarge the Avatar on hover */
+    }
         `;
 
 export const StyledButton = styled(Link)`
@@ -130,10 +138,6 @@ export const ButtonGroup = styled.div`
     flex-direction: row;
     margin-top: 25px;
 
-    > * {
-        transition: transform 0.3s ease-in-out;
-    }
-
     > *:hover {
         transform: scale(1.05);
     }
@@ -141,7 +145,7 @@ export const ButtonGroup = styled.div`
 
  //Input
  export const StyledTextInput = styled.input `
-    width: 200px;
+    width: 350px;
     padding: 15px;
     padding-left: 50px;
     font-size: 17px;
@@ -193,35 +197,39 @@ export const StyledFormButton = styled.p`
     position: relative;
     overflow: hidden;
 
-    &:before {
-        content: "";
+    &::before {
+        content: '';
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 200%;
-        height: 200%;
-        background: ${colors.theme};
-        transition: all 0.3s ease;
+        width: 300px;
+        height: 300px;
+        background-color: ${colors.primary};
         border-radius: 50%;
-        z-index: 0;
         transform: translate(-50%, -50%) scale(0);
+        transition: all 0.4s ease-in-out;
+        z-index: -1;
     }
 
-    &:hover:before {
+    &:hover::before {
         transform: translate(-50%, -50%) scale(1);
     }
 
     &:hover {
-        color: ${colors.primary};
+        color: ${colors.theme};
+        cursor: pointer;
     }
     `;
 
 export const ErrorMsg = styled.div`
-    font-size: ${props => props.size}px;
-    text-align: center;
-    color: ${colors.theme};
-    padding: 2px;
+    font-size: 13px;
+    color: ${colors.red};
     margin-top: 10px;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid ${colors.red};
+    border-radius: 5px;
+    background-color: #ffebee;
     `;
 
 

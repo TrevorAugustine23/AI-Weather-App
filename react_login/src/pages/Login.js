@@ -1,7 +1,7 @@
 //styled components
-import {StyledTextInput, StyledFormArea, StyledFormButton, StyledLabel, Avatar, StyledTitle, colors, ButtonGroup, ExtraText, TextLink, CopyrightText} from "./../components/Styles"
+import {StyledTextInput, StyledFormArea, StyledButton, StyledLabel, Avatar, StyledTitle, colors, ButtonGroup, ExtraText, TextLink, CopyrightText} from "./../components/Styles"
 
-import Logo from "./../assets/favicon.png";
+import Logo from "./../assets/favicon2.jpg";
 
 //formik
 import { Formik, Form } from "formik";
@@ -12,10 +12,20 @@ import * as Yup from 'yup';
 import { FiMail, FiLock} from 'react-icons/fi';
 
 //Loader
-import {Audio} from 'react-loader-spinner';
+import { Audio } from 'react-loader-spinner';
 
+//auth & redux
+import { connect } from "react-redux";
+import { loginUser } from "../auth/actions/userActions";
 
-const Login = () => {
+import { useHistory } from "react-router-dom";
+
+import { useNavigate } from "react-router-dom";
+//npm i --save-dev @types/react-router-dom
+
+const Login = (loginUser) => {
+    const history = useHistory();
+    const navigate = useNavigate();
     return (
         <div>
             <StyledFormArea>
@@ -34,8 +44,14 @@ const Login = () => {
                             .required("Required"),
                         })
                     }
-                    onSubmit={(values, {setSubmitting}) => {
-                        console.log(values);
+                    onSubmit={async (values, {setSubmitting, setFieldError}) => {
+                        try{
+                            console.log(values);
+                            await loginUser(values, history, setFieldError, setSubmitting);
+
+                        } catch(err){
+                            console.error("Login failed:", err);
+                        }
                     }}
                     >
                     {(isSubmitting) => (
@@ -57,17 +73,15 @@ const Login = () => {
                             />
                             <ButtonGroup>
                                {isSubmitting && (
-                               <StyledFormButton type="submit">Login
-                               </StyledFormButton>
+                               <StyledButton type="submit">Login 
+                                </StyledButton>
                                )}
-
-                               {isSubmitting && (
+                                {isSubmitting && (
                                 <Audio 
                                     type="ThreeDots"
-                                    color={colors.theme}
-                                    height={49}
-                                    width={50}
-                                />
+                                    height={30} 
+                                    width={30} 
+                                    />
                                )}
                             </ButtonGroup>
                         </Form>
@@ -84,6 +98,4 @@ const Login = () => {
     )
 }
 
-export default Login;
-
-//50:36
+export default connect(null, {loginUser}) (Login);
