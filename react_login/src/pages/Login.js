@@ -20,9 +20,12 @@ import { loginUser } from "../auth/actions/userActions";
 
 import { useHistory } from "react-router-dom";
 
+import { useNavigate } from "react-router-dom";
+//npm i --save-dev @types/react-router-dom
 
 const Login = (loginUser) => {
     const history = useHistory();
+    const navigate = useNavigate();
     return (
         <div>
             <StyledFormArea>
