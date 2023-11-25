@@ -11,9 +11,6 @@ import * as Yup from 'yup';
 //icons
 import { FiMail, FiLock} from 'react-icons/fi';
 
-//Loader
-import { Audio } from 'react-loader-spinner';
-
 //auth & redux
 import { connect } from "react-redux";
 import { loginUser } from "../auth/actions/userActions";
@@ -24,7 +21,7 @@ import { useNavigate } from 'react-router-dom';
 
 //npm i --save-dev @types/react-router-dom
 
-const Login = (loginUser) => {
+const Login = ({loginUser}) => {
     const navigate = useNavigate();
     
     return (
@@ -77,13 +74,7 @@ const Login = (loginUser) => {
                                <StyledButton type="submit">Login 
                                 </StyledButton>
                                )}
-                                {isSubmitting && (
-                                <Audio 
-                                    type="ThreeDots"
-                                    height={30} 
-                                    width={30} 
-                                    />
-                               )}
+                                
                             </ButtonGroup>
                         </Form>
                     )}
@@ -99,4 +90,4 @@ const Login = (loginUser) => {
     )
 }
 
-export default connect(null, {loginUser}) (Login);
+export default connect(null, { loginUser })(Login);
