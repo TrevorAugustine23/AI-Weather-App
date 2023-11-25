@@ -12,7 +12,7 @@ import { StyledContainer } from "./components/Styles";
 
 import {
   BrowserRouter as Router, 
-  Switch,
+  Routes,
   Route,
  
 } from "react-router-dom";
@@ -21,20 +21,18 @@ function App() {
   return (
     <Router>
       <StyledContainer>
-        <Switch>
-          <Route path="/signup">
-            <SignUp/>
+        <Routes>
+          <Route path="/signup" element={<SignUp/>}>
           </Route>
-          <Route path="/login">
-            <Login/>
+          <Route path="/login" element={<Login/>}>
           </Route>
-          <Route path="/dashboard">
-            <Dashboard/>
+          <Route path="/dashboard" element={<Dashboard/>}>
+            
           </Route>
-          <Route path="/">
-            <Home/>
+          <Route path="/" element={<Home/>}>
+          
           </Route>
-        </Switch>
+        </Routes>
     </StyledContainer>
     </Router>
     

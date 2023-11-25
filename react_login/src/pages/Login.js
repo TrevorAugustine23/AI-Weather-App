@@ -18,14 +18,15 @@ import { Audio } from 'react-loader-spinner';
 import { connect } from "react-redux";
 import { loginUser } from "../auth/actions/userActions";
 
-import { useHistory } from "react-router-dom";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+
+
 //npm i --save-dev @types/react-router-dom
 
 const Login = (loginUser) => {
-    const history = useHistory();
     const navigate = useNavigate();
+    
     return (
         <div>
             <StyledFormArea>
@@ -47,7 +48,7 @@ const Login = (loginUser) => {
                     onSubmit={async (values, {setSubmitting, setFieldError}) => {
                         try{
                             console.log(values);
-                            await loginUser(values, history, setFieldError, setSubmitting);
+                            await loginUser(values, navigate, setFieldError, setSubmitting);
 
                         } catch(err){
                             console.error("Login failed:", err);
