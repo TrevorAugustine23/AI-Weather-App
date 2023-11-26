@@ -18,13 +18,13 @@ import {Audio} from 'react-loader-spinner';
 import { connect } from "react-redux";
 import { signupUser } from "../auth/actions/userActions";
 
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 const SignUp = (signupUser) => {
-    const history = useHistory();
+    const navigate = useNavigate();
     return (
         <div>
             <StyledFormArea>
@@ -50,7 +50,7 @@ const SignUp = (signupUser) => {
                         })
                     }
                     onSubmit={(values, {setSubmitting, setFieldError}) => {
-                        signupUser(values, history, setFieldError, setSubmitting)
+                        signupUser(values, navigate, setFieldError, setSubmitting)
                     }}
                     >
                     {(isSubmitting) => (

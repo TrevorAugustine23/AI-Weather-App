@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { sessionService } from 'redux-react-session';
  
-export const loginUser = (credentials, history, setFieldError, setSubmitting) => {
+export const loginUser = (credentials, navigate, setFieldError, setSubmitting) => {
 
     axios.post("http://localhost:8000/user/signin", 
     credentials,
@@ -32,7 +32,7 @@ export const loginUser = (credentials, history, setFieldError, setSubmitting) =>
 
                 sessionService.saveSession(token).then(() => {
                     sessionService.saveUser(userData).then(() => {
-                        history.push("/dashboard");
+                        navigate.push('/dashboard');
                     }).catch(err => console.error(err))
                 }).catch(err => console.error(err))
             }
