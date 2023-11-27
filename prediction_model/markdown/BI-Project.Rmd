@@ -1,0 +1,684 @@
+---
+title: "Business Intelligence Project"
+author: "134780 Trevor Okinda"
+date: "27th November 2023"
+output:
+  github_document: 
+    toc: yes
+    toc_depth: 4
+    fig_width: 6
+    fig_height: 4
+    df_print: default
+editor_options:
+  chunk_output_type: console
+---
+
+# Student Details
+
+|                                              |     |
+|----------------------------------------------|-----|
+| **Student ID Number**                        | 134780 |
+| **Student Name**                             | Trevor Okinda |
+| **BBIT 4.2 Group**                           | C |
+| **BI Project Group Name/ID (if applicable)** | A Rainfall prediction model |
+
+# Setup Chunk
+
+**Note:** the following KnitR options have been set as the global defaults: <BR> `knitr::opts_chunk$set(echo = TRUE, warning = FALSE, eval = TRUE, collapse = FALSE, tidy = TRUE)`.
+
+More KnitR options are documented here <https://bookdown.org/yihui/rmarkdown-cookbook/chunk-options.html> and here <https://yihui.org/knitr/options/>.
+
+```{r setup, include=FALSE}
+library(formatR)
+knitr::opts_chunk$set(
+  warning = FALSE,
+  collapse = FALSE
+)
+```
+
+# Understanding the Dataset (Exploratory Data Analysis (EDA))
+
+## Loading the Dataset
+
+### Source: 
+
+The dataset that was used can be downloaded here: *\<https://www.kaggle.com/datasets/zaraavagyan/weathercsv/discussion\>*
+
+### Reference:
+
+*\<Avagyan, Z. (2017). Weather CSV [Data set]. Kaggle. https://www.kaggle.com/datasets/zaraavagyan/weathercsv\>\
+Refer to the APA 7th edition manual for rules on how to cite datasets: <https://apastyle.apa.org/style-grammar-guidelines/references/examples/data-set-references>*
+
+```{r Load datasetr}
+library(readr)
+WeatherData <- read.csv("weather.csv", colClasses = c(
+  MinTemp = "numeric",
+  MaxTemp = "numeric",
+  Rainfall = "numeric",
+  Evaporation = "numeric",
+  Sunshine = "numeric",
+  WindGustDir = "factor",
+  WindGustSpeed = "numeric",
+  WindDir9am = "factor",
+  WindDir3pm = "factor",
+  WindSpeed9am = "numeric",
+  WindSpeed3pm = "numeric",
+  Humidity9am = "numeric",
+  Humidity3pm = "numeric",
+  Pressure9am = "numeric",
+  Pressure3pm = "numeric",
+  Cloud9am = "numeric",
+  Cloud3pm = "numeric",
+  Temp9am = "numeric",
+  Temp3pm = "numeric",
+  RainToday = "factor",
+  RISK_MM = "numeric",
+  RainTomorrow = "factor"
+))
+
+
+# Define levels for categorical columns
+wind_dir_levels <- c("N", "NE", "E", "SE", "S", "SW", "W", "NW")
+rain_levels <- c("No", "Yes")
+
+# Update factor columns with levels
+WeatherData$WindGustDir <- factor(WeatherData$WindGustDir, levels = wind_dir_levels)
+WeatherData$WindDir9am <- factor(WeatherData$WindDir9am, levels = wind_dir_levels)
+WeatherData$WindDir3pm <- factor(WeatherData$WindDir3pm, levels = wind_dir_levels)
+WeatherData$RainToday <- factor(WeatherData$RainToday, levels = rain_levels)
+WeatherData$RainTomorrow <- factor(WeatherData$RainTomorrow, levels = rain_levels)
+
+View(WeatherData)
+
+```
+## Categorical columns analysis
+```{r}
+# List of categorical columns in the dataset
+categorical_columns <- c("WindGustDir", "WindDir9am", "WindDir3pm", "RainToday", "RainTomorrow")
+
+# Loop through each categorical column and generate frequency and percentage tables
+for (col in categorical_columns) {
+  column_freq <- table(WeatherData[[col]])
+  
+  cat(paste("# Number of instances in (", col, "):\n"))
+  class_counts <- cbind(frequency = column_freq, percentage = prop.table(column_freq) * 100)
+  print(class_counts)
+  cat("\n")
+}
+```
+## Measures of Central Tendency
+
+```{r}
+# List of numeric columns in the dataset
+numeric_columns <- c(
+  "MinTemp", "MaxTemp", "Rainfall", "Evaporation", "Sunshine",
+  "WindGustSpeed", "WindSpeed9am", "WindSpeed3pm",
+  "Humidity9am", "Humidity3pm",
+  "Pressure9am", "Pressure3pm",
+  "Cloud9am", "Cloud3pm",
+  "Temp9am", "Temp3pm",
+  "RISK_MM"
+)
+
+# Mode function definition
+Mode <- function(x) {
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
+}
+
+# Loop through each numeric column and calculate measures of central tendency
+for (col in numeric_columns) {
+  cat(paste("# Measures of central tendency for", col, ":\n"))
+  
+  # Mean
+  mean_val <- mean(WeatherData[[col]])
+  cat("Mean:", mean_val, "\n")
+  
+  # Median
+  median_val <- median(WeatherData[[col]])
+  cat("Median:", median_val, "\n")
+  
+  # Mode (using the Mode function defined below)
+  mode_val <- Mode(WeatherData[[col]])
+  cat("Mode:", mode_val, "\n\n")
+}
+
+summary(WeatherData)
+```
+## Measures of Distribution
+```{r}
+# List of numeric columns in the dataset
+numeric_columns <- c(
+  "MinTemp", "MaxTemp", "Rainfall", "Evaporation", "Sunshine",
+  "WindGustSpeed", "WindSpeed9am", "WindSpeed3pm",
+  "Humidity9am", "Humidity3pm",
+  "Pressure9am", "Pressure3pm",
+  "Cloud9am", "Cloud3pm",
+  "Temp9am", "Temp3pm",
+  "RISK_MM"
+)
+
+# Loop through each numeric column and calculate measures of distribution
+for (col in numeric_columns) {
+  cat(paste("# Measures of Distribution for", col, ":\n"))
+  
+  # Range
+  range_val <- range(WeatherData[[col]])
+  cat("Range:", range_val, "\n")
+  
+  # Variance
+  var_val <- var(WeatherData[[col]])
+  cat("Variance:", var_val, "\n")
+  
+  # Standard Deviation
+  sd_val <- sd(WeatherData[[col]])
+  cat("Standard Deviation:", sd_val, "\n")
+  
+}
+```
+## Measures of Relationship
+```{r}
+# List of numeric columns in the dataset
+numeric_columns <- c(
+  "MinTemp", "MaxTemp", "Rainfall", "Evaporation", "Sunshine",
+  "WindGustSpeed", "WindSpeed9am", "WindSpeed3pm",
+  "Humidity9am", "Humidity3pm",
+  "Pressure9am", "Pressure3pm",
+  "Cloud9am", "Cloud3pm",
+  "Temp9am", "Temp3pm",
+  "RISK_MM"
+)
+
+# Loop through pairs of numeric columns and calculate measures of relationship
+for (i in 1:(length(numeric_columns) - 1)) {
+  for (j in (i + 1):length(numeric_columns)) {
+    col1 <- numeric_columns[i]
+    col2 <- numeric_columns[j]
+    
+    cat(paste("# Measures of Relationship between", col1, "and", col2, ":\n"))
+    
+    # Correlation
+    correlation_val <- cor(WeatherData[[col1]], WeatherData[[col2]])
+    cat("Correlation:", correlation_val, "\n")
+    
+    # Covariance
+    covariance_val <- cov(WeatherData[[col1]], WeatherData[[col2]])
+    cat("Covariance:", covariance_val, "\n\n")
+  }
+}
+```
+## ANOVA
+```{r}
+# ANOVA for a categorical variable (WindGustDir) and a numeric variable (MaxTemp)
+anova_result1 <- aov(MaxTemp ~ WindGustDir, data = WeatherData)
+
+# Display the ANOVA result for the first analysis
+cat("# ANOVA Result for MaxTemp and WindGustDir:\n")
+print(anova_result1)
+
+# ANOVA for another categorical variable (RainTomorrow) and a numeric variable (MaxTemp)
+anova_result2 <- aov(MaxTemp ~ RainTomorrow, data = WeatherData)
+
+# Display the ANOVA result for the second analysis
+cat("\n# ANOVA Result for MaxTemp and RainTomorrow:\n")
+print(anova_result2)
+
+```
+
+## Basic Visualizations
+### Univariate plots
+```{r}
+if (!requireNamespace("ggplot2", quietly = TRUE)) {
+  install.packages("ggplot2")
+}
+
+library(ggplot2)
+
+# Histogram for a numeric variable (Humidity9am)
+ggplot(WeatherData, aes(x = Humidity9am)) +
+  geom_histogram(binwidth = 5, fill = "coral", color = "black", alpha = 0.7) +
+  labs(title = "Histogram of Humidity9am", x = "Humidity9am", y = "Frequency")
+
+# Histogram  for another numeric variable (WindSpeed3pm)
+ggplot(WeatherData, aes(x = WindSpeed3pm)) +
+  geom_histogram(binwidth = 5, fill = "lightblue", color = "black", alpha = 0.7) +
+  labs(title = "Histogram of WindSpeed3pm", x = "WindSpeed3pm", y = "Frequency")
+
+# Bar plot for a categorical variable (WindGustDir)
+ggplot(WeatherData, aes(x = WindGustDir)) +
+  geom_bar(fill = "lightgreen", color = "black", alpha = 0.7) +
+  labs(title = "Bar Plot of WindGustDir", x = "WindGustDir", y = "Count") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+
+# Bar plot for another categorical variable (RainToday)
+ggplot(WeatherData, aes(x = RainToday)) +
+  geom_bar(fill = "lightpink", color = "black", alpha = 0.7) +
+  labs(title = "Bar Plot of RainToday", x = "RainToday", y = "Count") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+### Multivariate Plots
+```{r}
+#MultiVariate Plots
+# Scatter plot for two numeric variables (MaxTemp vs. Rainfall)
+ggplot(WeatherData, aes(x = Rainfall, y = MaxTemp)) +
+  geom_point(color = "blue", alpha = 0.7) +
+  labs(title = "Scatter Plot of MaxTemp vs. Rainfall", x = "Rainfall", y = "MaxTemp")
+
+
+# Box plot to compare a numeric variable across different levels of a categorical variable (WindGustDir vs. MaxTemp)
+ggplot(WeatherData, aes(x = WindGustDir, y = MaxTemp, fill = WindGustDir)) +
+  geom_boxplot() +
+  labs(title = "Box Plot of MaxTemp Across WindGustDir", x = "WindGustDir", y = "MaxTemp") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+
+# Violin plot for the distribution of a numeric variable across different levels of a categorical variable (e.g., RainToday vs. Humidity9am)
+ggplot(WeatherData, aes(x = RainToday, y = Humidity9am, fill = RainToday)) +
+  geom_violin() +
+  labs(title = "Violin Plot of Humidity9am Across RainToday", x = "RainToday", y = "Humidity9am")
+
+# Bar plot to show the count of occurrences for two categorical variables (WindGustDir and RainToday)
+ggplot(WeatherData, aes(x = WindGustDir, fill = RainToday)) +
+  geom_bar(position = "dodge") +
+  labs(title = "Bar Plot of WindGustDir Counts by RainToday", x = "WindGustDir", y = "Count") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+## Cross-tabulation
+# Create a cross-tabulation for RainToday and RainTomorrow
+cross_tab <- table(WeatherData$RainToday, WeatherData$RainTomorrow)
+
+# Display the cross-tabulation
+print(cross_tab)
+
+# Bar plot for WindGustDir
+ggplot(WeatherData, aes(x = WindGustDir, fill = WindGustDir)) +
+  geom_bar() +
+  labs(title = "Bar Plot of WindGustDir Counts", x = "WindGustDir", y = "Count") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels for better visibility
+
+
+```
+
+
+# Preprocessing and Data Transformation
+## Missingness
+```{r}
+# Check for missing values in the entire dataset
+missing_values <- any(is.na(WeatherData))
+
+# Display the result
+if (missing_values) {
+  cat("There are missing values in the dataset.\n")
+} else {
+  cat("There are no missing values in the dataset.\n")
+}
+```
+
+## Imputation
+```{r}
+#install mice package for multiple imputation
+# Set a CRAN mirror
+options(repos = c(CRAN = "https://cran.rstudio.com"))
+install.packages("mice")
+library(mice)
+
+# Impute missing values in numeric columns using mean imputation
+numeric_cols <- sapply(WeatherData, is.numeric)
+imputed_data_numeric <- complete(mice(WeatherData[, numeric_cols]))
+
+# Impute missing values in categorical columns using mode imputation
+categorical_cols <- sapply(WeatherData, is.factor)
+imputed_data_categorical <- complete(mice(WeatherData[, categorical_cols]))
+
+# Combine the imputed numeric and categorical datasets
+imputed_data <- cbind(imputed_data_numeric, imputed_data_categorical)
+```
+
+## Check for missing values
+```{r}
+# Check if there are still missing values in the imputed dataset
+missing_values_after_imputation <- any(is.na(imputed_data))
+
+# Display the result
+if (missing_values_after_imputation) {
+  cat("There are still missing values after imputation.\n")
+} else {
+  cat("All missing values have been successfully imputed.\n")
+}
+
+#replace WeatheData dataset with imputed dataset
+# WeatherData <- imputed_data
+```
+
+## Standardization of numerical variables for predictions
+```{r}
+# Standardize the Numeric variables that could be used for prediction
+numeric_vars <- c("MaxTemp", "MinTemp", "Rainfall", "Sunshine")
+
+# Standardize the numeric variables
+Weather_standardized <- WeatherData
+Weather_standardized[numeric_vars] <- scale(WeatherData[numeric_vars])
+# Assuming your dataset is already loaded and named "WeatherData"
+# Assuming you want to standardize "MaxTemp," "MinTemp," "Rainfall," and "Sunshine"
+
+# Numeric variables to be standardized
+numeric_vars <- c("MaxTemp", "MinTemp", "Rainfall", "Sunshine")
+
+# Standardize the numeric variables
+Weather_standardized <- WeatherData
+Weather_standardized[numeric_vars] <- scale(WeatherData[numeric_vars])
+
+# Load required packages
+library(ggplot2)
+
+# Function to create histograms for original MaxTemp and standardized MaxTemp variables
+create_histograms <- function(original_data, standardized_data, var) {
+  original_plot <- ggplot(original_data, aes(x = !!sym(var))) +
+    geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
+    labs(title = paste("Histogram of Original", var), x = var, y = "Frequency")
+  
+  standardized_plot <- ggplot(standardized_data, aes(x = !!sym(var))) +
+    geom_histogram(binwidth = 0.2, fill = "orange", color = "black", alpha = 0.7) +
+    labs(title = paste("Histogram of Standardized", var), x = var, y = "Frequency")
+  
+  return(list(original_plot = original_plot, standardized_plot = standardized_plot))
+}
+
+# Create histograms for original and standardized variables
+histograms <- create_histograms(WeatherData, Weather_standardized, numeric_vars[1])
+
+# Display the histograms separately
+original_plot <- histograms$original_plot
+standardized_plot <- histograms$standardized_plot
+
+print(original_plot)
+print(standardized_plot)
+```
+
+# Hyper-Parameter Tuning and Ensembles
+## Cross-validation
+```{r}
+library(caret)
+library(randomForest)
+
+# Assuming "RainTomorrow" is the target variable
+target_variable <- "RainTomorrow"
+
+# Features
+features <- c("MinTemp", "MaxTemp", "Rainfall", "Evaporation", "Sunshine", "WindGustSpeed", "Humidity9am", "Humidity3pm")
+
+# Create a control object for cross-validation
+cv_control <- trainControl(method = "cv", number = 5)
+```
+
+## Grid Search
+```{r}
+#replace WeatherData dataset with imputed dataset
+WeatherData <- imputed_data
+
+#Grid Search
+rf_model <- train(WeatherData[, features], WeatherData[[target_variable]],
+                  method = "rf",
+                  trControl = trainControl(method = "cv", number = 5, search = "grid"),  # Specify grid search
+                  tuneLength = 9,  # Number of grid points for tuning
+                  metric = "Accuracy")  
+
+# Print tuned model details
+print(rf_model)
+```
+
+## Bagging Ensemble
+```{r}
+# Bagging Ensemble
+bagging_model <- train(WeatherData[, features], WeatherData[[target_variable]],
+                       method = "treebag",  # Bagging method
+                       trControl = trainControl(method = "cv", number = 5),
+                       metric = "Accuracy")
+
+
+# Print ensemble model details
+print(bagging_model)
+```
+
+# Training the Model
+## Data splitting
+```{r}
+library(caret)
+
+#set-up target variables and features
+target_variable <- "RainTomorrow"
+features <- c("MaxTemp", "MinTemp", "Rainfall", "Sunshine")
+
+# Set the seed for reproducibility
+set.seed(123)
+
+# Create indices for data splitting
+split_indices <- createDataPartition(WeatherData[[target_variable]], p = 0.8, list = FALSE)
+
+# Create training and testing sets
+train_data <- WeatherData[split_indices, ]
+test_data <- WeatherData[-split_indices, ]
+
+# Print the dimensions of the training and testing sets
+cat("Training set dimensions:", dim(train_data), "\n")
+cat("Testing set dimensions:", dim(test_data), "\n")
+```
+
+## Bootstrapping
+```{r}
+library(boot)
+
+target_variable <- "RainTomorrow"
+features <- c("MaxTemp", "MinTemp", "Rainfall", "Sunshine")
+
+# Set the seed for reproducibility
+set.seed(123)
+
+# Create a function to calculate a statistic of interest
+calculate_statistic <- function(data, split_indices) {
+  sampled_data <- data[split_indices, ]
+  
+  
+  statistic <- mean(sampled_data$MaxTemp)
+  
+  return(statistic)
+}
+# Perform bootstrapping
+boot_results <- boot(data = WeatherData[, features],
+                     statistic = calculate_statistic,
+                     R = 1000)  # Number of bootstrap samples
+
+# Print the bootstrapped results
+print(boot_results)
+```
+
+## Models with resamples
+```{r}
+library(caret)
+
+target_variable <- "RainTomorrow"
+features <- c("MaxTemp", "MinTemp", "Rainfall", "Sunshine")
+
+# Set the seed for reproducibility
+set.seed(123)
+# Create a control object for cross-validation
+cv_control <- trainControl(method = "cv", number = 5)  # 5-fold cross-validation
+
+#replace WeatheData dataset with imputed dataset
+WeatherData <- imputed_data
+
+# Basic Cross-Validation with Random Forest
+rf_model <- train(WeatherData[, features], WeatherData[[target_variable]],
+                  method = "rf",  # Random Forest classifier
+                  trControl = cv_control)
+
+# Repeated Cross-Validation with Logistic Regression
+logreg_model <- train(WeatherData[, features], WeatherData[[target_variable]],
+                      method = "glm",  # Logistic Regression
+                      trControl = trainControl(method = "repeatedcv", number = 5, repeats = 3))
+
+# Leave-One-Out Cross-Validation with Support Vector Machine (SVM)
+svm_model <- train(WeatherData[, features], WeatherData[[target_variable]],
+                   method = "svmRadial",  # Radial kernel SVM
+                   trControl = trainControl(method = "LOOCV"))
+```
+
+## Classification model with Random forests
+```{r}
+# Load necessary libraries
+library(caret)
+library(randomForest)
+library(glmnet)
+
+# Set the seed for reproducibility
+set.seed(123)
+
+
+# Assuming "RainTomorrow" is the target variable
+target_variable <- "RainTomorrow"
+
+# Check the data type of the target variable
+target_type <- class(WeatherData[[target_variable]])
+
+# Features
+features <- c("MinTemp", "MaxTemp", "Rainfall", "Evaporation", "Sunshine", "WindGustSpeed", "Humidity9am", "Humidity3pm")
+
+cl_model <- train(WeatherData[, features], WeatherData[[target_variable]],
+                 method = "rf",
+                 trControl = trainControl(method = "cv", number = 5))
+  
+```
+
+## Models perfomance metrics
+```{r}
+# Print model details
+print(cl_model)
+
+# Model performance comparison using resamples
+# Print model performance metrics
+print(rf_model)
+print(logreg_model)
+print(svm_model)
+  
+```
+
+# Save the model
+```{r}
+#Saving the model
+saveRDS(rf_model, "./models/saved_rf_model.rds")
+
+# Load the saved model
+loaded_rf_model <- readRDS("./models/saved_rf_model.rds")
+
+#Model predicts RainTomorrow
+new_data <- data.frame(
+  MinTemp = 15,
+  MaxTemp = 25,
+  Rainfall = 5,
+  Evaporation = 6,
+  Sunshine = 8,
+  WindGustDir = "N",
+  WindGustSpeed = 30,
+  WindDir9am = "NE",
+  WindDir3pm = "NW",
+  WindSpeed9am = 10,
+  WindSpeed3pm = 15,
+  Humidity9am = 60,
+  Humidity3pm = 40,
+  Pressure9am = 1010,
+  Pressure3pm = 1008,
+  Cloud9am = 5,
+  Cloud3pm = 3,
+  Temp9am = 18,
+  Temp3pm = 22,
+  RainToday = "No",
+  RISK_MM = 0,
+  RainTomorrow = "Yes"
+)
+
+
+# Use the loaded model to make predictions
+predictions_loaded_model <- predict(loaded_rf_model, newdata = new_data)
+
+
+# Print predictions
+print(predictions_loaded_model)
+```
+
+# Plumber API
+```{r}
+# Load the saved RandomForest model
+loaded_rf_model <- readRDS("./models/saved_rf_model.rds")
+
+#* @apiTitle Rain Prediction Model API
+
+#* @apiDescription Used to predict whether it will rain tomorrow.
+
+#* @param MaxTemp Maximum temperature
+#* @param MinTemp Minimum temperature
+#* @param Rainfall Amount of rainfall
+#* @param Evaporation Evaporation
+#* @param Sunshine Sunshine hours
+#* @param WindGustDir Wind direction at gust time
+#* @param WindGustSpeed Wind speed (gust time)
+#* @param WindDir9am Wind direction at 9 am
+#* @param WindDir3pm Wind direction at 3 pm
+#* @param WindSpeed9am Wind speed (9 am)
+#* @param WindSpeed3pm Wind speed (3 pm)
+#* @param Humidity9am Humidity at 9 am
+#* @param Humidity3pm Humidity at 3 pm
+#* @param Pressure9am Atmospheric pressure at 9 am
+#* @param Pressure3pm Atmospheric pressure at 3 pm
+#* @param Cloud9am Cloud cover at 9 am
+#* @param Cloud3pm Cloud cover at 3 pm
+#* @param Temp9am Temperature at 9 am
+#* @param Temp3pm Temperature at 3 pm
+#* @param RainToday Whether it will rain today (Yes/No)
+#* @param RISK_MM Risk of rain in mm
+#* @param RainTomorrow Actual observation: Will it rain tomorrow? (Yes/No)
+
+#* @get /rainfall
+
+predict_rain <-
+  function(MaxTemp, MinTemp, Rainfall, Evaporation, Sunshine, WindGustDir,
+           WindGustSpeed, WindDir9am, WindDir3pm, WindSpeed9am, WindSpeed3pm,
+           Humidity9am, Humidity3pm, Pressure9am, Pressure3pm, Cloud9am,
+           Cloud3pm, Temp9am, Temp3pm, RainToday, RISK_MM, RainTomorrow) {
+    
+    # Create a data frame using the arguments
+    to_be_predicted <- data.frame(
+      MaxTemp = as.numeric(MaxTemp),
+      MinTemp = as.numeric(MinTemp),
+      Rainfall = as.numeric(Rainfall),
+      Evaporation = as.numeric(Evaporation),
+      Sunshine = as.numeric(Sunshine),
+      WindGustDir = as.character(WindGustDir),
+      WindGustSpeed = as.numeric(WindGustSpeed),
+      WindDir9am = as.character(WindDir9am),
+      WindDir3pm = as.character(WindDir3pm),
+      WindSpeed9am = as.numeric(WindSpeed9am),
+      WindSpeed3pm = as.numeric(WindSpeed3pm),
+      Humidity9am = as.numeric(Humidity9am),
+      Humidity3pm = as.numeric(Humidity3pm),
+      Pressure9am = as.numeric(Pressure9am),
+      Pressure3pm = as.numeric(Pressure3pm),
+      Cloud9am = as.numeric(Cloud9am),
+      Cloud3pm = as.numeric(Cloud3pm),
+      Temp9am = as.numeric(Temp9am),
+      Temp3pm = as.numeric(Temp3pm),
+      RainToday = as.character(RainToday),
+      RISK_MM = as.numeric(RISK_MM),
+      RainTomorrow = as.character(RainTomorrow)
+    )
+    
+    # Use the loaded model to make predictions
+    prediction <- predict(loaded_rf_model, newdata = to_be_predicted)
+    
+    # Return the prediction
+    return(prediction)
+  }
+
+```
+
+
+
