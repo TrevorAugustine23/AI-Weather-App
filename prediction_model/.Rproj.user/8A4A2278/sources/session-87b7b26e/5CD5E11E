@@ -1,0 +1,27 @@
+{
+    "id": "5CD5E11E",
+    "path": "~/GitHub/AI-Weather-App3/prediction_model/markdown/BI-Project.Rmd",
+    "project_path": "markdown/BI-Project.Rmd",
+    "type": "r_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1701352586872.0,
+    "source_on_save": true,
+    "relative_order": 1,
+    "properties": {
+        "chunk_output_type": "console",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "22,16",
+        "scrollLine": "91"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1701353550,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1701353550,
+    "read_only": false,
+    "read_only_alternatives": []
+}
