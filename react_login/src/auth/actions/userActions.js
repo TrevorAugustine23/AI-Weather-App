@@ -45,7 +45,31 @@ export const loginUser = (credentials, navigate, setFieldError, setSubmitting) =
 }
 
 export const signupUser = (credentials, history, setFieldError, setSubmitting) => {
-    
+    axios.post("http://localhost:8000/user/signin", 
+    credentials,
+    {
+        headers:{
+            "Content-Type": "application/json"
+        }
+    }
+    ).then((response) => {
+        const {data} = response;
+        //checking for specific error
+        if(message.includes("name")) {
+            setFieldError("name", message);
+        } else if (message.includes("email")) {
+            setFieldError("email", message);
+        } else if (message.includes("date")){
+            setFieldError("dateOfBirth", message);
+        } else if (message.includes("password")){
+            setFieldError("password", message);
+        }
+        if(data.status == "FAILED"){
+
+        } else if (data.status === "SUCCESS"){
+
+        }
+    }).catch(err => console.error(err))
 }
 export const logoutUser = () => {
      
