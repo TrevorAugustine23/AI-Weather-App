@@ -67,6 +67,8 @@ export const signupUser = (credentials, history, setFieldError, setSubmitting) =
             setFieldError("password", message);
             }
        
+            // complete submission
+            setSubmitting(false);
 
         } else if (data.status === "SUCCESS"){
 
