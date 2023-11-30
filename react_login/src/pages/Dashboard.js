@@ -5,7 +5,7 @@ import { styled } from 'styled-components';
 import Logo from "./../assets/favicon2.jpg"
 
 //auth & redux
-import { connect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import { logoutUser } from "./../auth/actions/userActions";
 
@@ -13,6 +13,7 @@ import { logoutUser } from "./../auth/actions/userActions";
 import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+    const navigate = useNavigate();
     return (
 
         <div>
