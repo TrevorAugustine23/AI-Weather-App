@@ -23,6 +23,11 @@ const Dashboard = () => {
     window.location.href = 'http://localhost:3001';
   };
 
+  const openRainfallForm = () => {
+    // Change the PHP file path accordingly
+    window.location.href = 'http://localhost/path/to/your/php/form.php';
+  };
+
   return (
     <div>
       <div
@@ -41,14 +46,15 @@ const Dashboard = () => {
       <StyledFormArea>
         <StyledTitle size={45}>Welcome</StyledTitle>
         <ButtonGroup>
-          {/* Use the custom styled component for the buttons */}
           <CustomStyledButton to="#" onClick={() => logoutUser(navigate)}>
             Logout
           </CustomStyledButton>
           <CustomStyledButton onClick={openWeatherApp}>
-            Weather App
+            Weather application
           </CustomStyledButton>
-          <CustomStyledButton>Rainfall Prediction Model</CustomStyledButton>
+          <CustomStyledButton onClick={openRainfallForm}>
+            Rainfall Prediction Model
+          </CustomStyledButton>
         </ButtonGroup>
       </StyledFormArea>
     </div>
