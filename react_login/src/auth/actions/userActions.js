@@ -48,7 +48,10 @@ export const loginUser = (credentials, navigate, setFieldError, setSubmitting) =
 }
 };
 
-export const signupUser = (credentials, navigate, setFieldError, setSubmitting) => dispatch => {
+export const signupUser = (credentials, navigate, setFieldError, setSubmitting) => {
+
+    return (dispatch ) =>{
+    
     axios.post("http://localhost:8000/user/signin", 
     credentials,
     {
@@ -82,7 +85,8 @@ export const signupUser = (credentials, navigate, setFieldError, setSubmitting) 
             dispatch(loginUser({email, password}, navigate, 
                 setFieldError,setSubmitting))
         }
-    }).catch(err => console.error(err))
+    }).catch(err => console.error(err));
+}
 }
 export const logoutUser = () => {
      
