@@ -135,64 +135,66 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>RainFall Prediction</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
-        form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            width: 100%;
-            text-align: left;
-        }
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: left;
+}
 
-        h2 {
-            text-align: center;
-            color: #333;
-        }
+h2 {
+    text-align: center;
+    color: #3498db;
+}
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-        }
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+}
 
-        input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
 
-        input[type="submit"] {
-            background-color: #4caf50;
-            color: #fff;
-            cursor: pointer;
-        }
+input[type="submit"] {
+    background-color: #2ecc71;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
+input[type="submit"]:hover {
+    background-color: #27ae60;
+}
 
-        .output {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #dff0d8;
-            border: 1px solid #3c763d;
-            border-radius: 4px;
-            color: #3c763d;
-        }
+.output {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #eaf7ea;
+    border: 1px solid #4CAF50;
+    border-radius: 4px;
+    color: #4CAF50;
+}
+
     </style>
 </head>
 <body>
