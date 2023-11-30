@@ -5,6 +5,9 @@ import { sessionService } from 'redux-react-session';
  
 export const loginUser = (credentials, navigate, setFieldError, setSubmitting) => {
 
+    //Make checks and get some data
+    return () => {
+
     axios.post("http://localhost:8000/user/signin", 
     credentials,
     {
@@ -43,8 +46,9 @@ export const loginUser = (credentials, navigate, setFieldError, setSubmitting) =
 }).catch(err => console.error(err))
 
 }
+};
 
-export const signupUser = (credentials, history, setFieldError, setSubmitting) => dispatch => {
+export const signupUser = (credentials, navigate, setFieldError, setSubmitting) => dispatch => {
     axios.post("http://localhost:8000/user/signin", 
     credentials,
     {
@@ -56,6 +60,7 @@ export const signupUser = (credentials, history, setFieldError, setSubmitting) =
         const {data} = response;
 
         if(data.status == "FAILED"){
+            const {message} = data;
         //checking for specific error
             if(message.includes("name")) {
             setFieldError("name", message);
