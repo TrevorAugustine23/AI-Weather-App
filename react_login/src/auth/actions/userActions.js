@@ -54,6 +54,8 @@ export const signupUser = (credentials, history, setFieldError, setSubmitting) =
     }
     ).then((response) => {
         const {data} = response;
+
+        if(data.status == "FAILED"){
         //checking for specific error
         if(message.includes("name")) {
             setFieldError("name", message);
@@ -64,7 +66,7 @@ export const signupUser = (credentials, history, setFieldError, setSubmitting) =
         } else if (message.includes("password")){
             setFieldError("password", message);
         }
-        if(data.status == "FAILED"){
+       
 
         } else if (data.status === "SUCCESS"){
 
