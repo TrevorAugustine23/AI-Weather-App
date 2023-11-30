@@ -2,8 +2,13 @@ import axios from 'axios';
 
 
 import { sessionService } from 'redux-react-session';
+
+
+
  
 export const loginUser = (credentials, navigate, setFieldError, setSubmitting) => {
+    //Make checks and get some data
+    return () => {
 
     axios.post("http://localhost:8000/user/signin", 
     credentials,
@@ -43,10 +48,53 @@ export const loginUser = (credentials, navigate, setFieldError, setSubmitting) =
 }).catch(err => console.error(err))
 
 }
+};
 
 export const signupUser = (credentials, history, setFieldError, setSubmitting) => {
+
+    return (dispatch ) =>{
     
+    axios.post("http://localhost:8000/user/signup", 
+    credentials,
+    {
+        headers:{
+            "Content-Type": "application/json"
+        }
+    }
+    ).then((response) => {
+        const {data} = response;
+
+        if(data.status == "FAILED"){
+            const {message} = data;
+        //checking for specific error
+            if(message.includes("name")) {
+            setFieldError("name", message);
+            } else if (message.includes("email")) {
+            setFieldError("email", message);
+            } else if (message.includes("date")){
+            setFieldError("dateOfBirth", message);
+            } else if (message.includes("password")){
+            setFieldError("password", message);
+            }
+       
+            // complete submission
+            setSubmitting(false);
+
+        } else if (data.status === "SUCCESS"){
+            // Login user after successful signup
+            const {email, password} = credentials;
+
+            dispatch(loginUser({email, password}, history, 
+                setFieldError,setSubmitting))
+        }
+    }).catch(err => console.error(err));
 }
-export const logoutUser = () => {
+}
+export const logoutUser = (navigate) => {
+    return () => {
+            sessionService.deleteSession();
+            sessionService.deleteUser();
+
+    }
      
-}
+};
