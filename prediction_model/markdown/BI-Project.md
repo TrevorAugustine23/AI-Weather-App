@@ -42,12 +42,12 @@ Business Intelligence Project
 
 # Student Details
 
-|                                              |                             |
-|----------------------------------------------|-----------------------------|
-| **Student ID Number**                        | 134780                      |
-| **Student Name**                             | Trevor Okinda               |
-| **BBIT 4.2 Group**                           | C                           |
-| **BI Project Group Name/ID (if applicable)** | A Rainfall prediction model |
+|                       |                             |
+|-----------------------|-----------------------------|
+| **Student ID Number** | 134780                      |
+| **Student Name**      | Trevor Okinda               |
+| **BBIT 4.2 Group**    | C                           |
+| **Project Name)**     | A Rainfall prediction model |
 
 # Setup Chunk
 
@@ -1226,7 +1226,7 @@ install.packages("mice")
     ## package 'mice' successfully unpacked and MD5 sums checked
     ## 
     ## The downloaded binary packages are in
-    ##  C:\Users\Trevor\AppData\Local\Temp\Rtmp8QQXnO\downloaded_packages
+    ##  C:\Users\Trevor\AppData\Local\Temp\RtmpQduh6P\downloaded_packages
 
 ``` r
 library(mice)
@@ -1455,17 +1455,17 @@ print(rf_model)
     ## 
     ## No pre-processing
     ## Resampling: Cross-Validated (5 fold) 
-    ## Summary of sample sizes: 293, 293, 293, 293, 292 
+    ## Summary of sample sizes: 292, 293, 293, 293, 293 
     ## Resampling results across tuning parameters:
     ## 
     ##   mtry  Accuracy   Kappa    
-    ##   2     0.8799334  0.4972091
-    ##   3     0.8744909  0.4673580
-    ##   4     0.8744909  0.4799267
-    ##   5     0.8717512  0.4651331
-    ##   6     0.8662718  0.4458337
-    ##   7     0.8690115  0.4605476
-    ##   8     0.8580526  0.4230269
+    ##   2     0.8825620  0.5092649
+    ##   3     0.8770455  0.5023511
+    ##   4     0.8688264  0.4719802
+    ##   5     0.8716031  0.4858570
+    ##   6     0.8797853  0.5158013
+    ##   7     0.8689004  0.4794232
+    ##   8     0.8607183  0.4523929
     ## 
     ## Accuracy was used to select the optimal model using the largest value.
     ## The final value used for the model was mtry = 2.
@@ -1496,7 +1496,7 @@ print(bagging_model)
     ## Resampling results:
     ## 
     ##   Accuracy   Kappa    
-    ##   0.8471307  0.4286595
+    ##   0.8577934  0.4383224
 
 # Training the Model
 
@@ -1665,12 +1665,12 @@ print(cl_model)
     ## Resampling results across tuning parameters:
     ## 
     ##   mtry  Accuracy   Kappa    
-    ##   2     0.8660866  0.4375138
-    ##   5     0.8606442  0.4478105
-    ##   8     0.8579045  0.4351371
+    ##   2     0.8660866  0.4309444
+    ##   5     0.8660866  0.4555684
+    ##   8     0.8578675  0.4288104
     ## 
     ## Accuracy was used to select the optimal model using the largest value.
-    ## The final value used for the model was mtry = 2.
+    ## The final value used for the model was mtry = 5.
 
 ``` r
 # Model performance comparison using resamples
@@ -1690,12 +1690,12 @@ print(rf_model)
     ## Resampling results across tuning parameters:
     ## 
     ##   mtry  Accuracy   Kappa    
-    ##   2     0.8223991  0.2575772
-    ##   3     0.8141799  0.2699686
-    ##   4     0.8142170  0.2700169
+    ##   2     0.8223621  0.2671809
+    ##   3     0.8278415  0.2994971
+    ##   4     0.8223621  0.2949173
     ## 
     ## Accuracy was used to select the optimal model using the largest value.
-    ## The final value used for the model was mtry = 2.
+    ## The final value used for the model was mtry = 3.
 
 ``` r
 print(logreg_model)
@@ -1709,11 +1709,11 @@ print(logreg_model)
     ## 
     ## No pre-processing
     ## Resampling: Cross-Validated (5 fold, repeated 3 times) 
-    ## Summary of sample sizes: 293, 292, 293, 293, 293, 293, ... 
+    ## Summary of sample sizes: 293, 293, 292, 293, 293, 292, ... 
     ## Resampling results:
     ## 
     ##   Accuracy   Kappa    
-    ##   0.8332963  0.3016874
+    ##   0.8287424  0.2832909
 
 ``` r
 print(svm_model)
@@ -1732,12 +1732,12 @@ print(svm_model)
     ## 
     ##   C     Accuracy   Kappa    
     ##   0.25  0.8196721  0.0000000
-    ##   0.50  0.8360656  0.2129032
-    ##   1.00  0.8224044  0.1945968
+    ##   0.50  0.8224044  0.0941284
+    ##   1.00  0.8251366  0.1876821
     ## 
-    ## Tuning parameter 'sigma' was held constant at a value of 0.4685346
+    ## Tuning parameter 'sigma' was held constant at a value of 0.9175203
     ## Accuracy was used to select the optimal model using the largest value.
-    ## The final values used for the model were sigma = 0.4685346 and C = 0.5.
+    ## The final values used for the model were sigma = 0.9175203 and C = 1.
 
 # Save the model
 
