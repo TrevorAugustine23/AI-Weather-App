@@ -57,15 +57,15 @@ export const signupUser = (credentials, history, setFieldError, setSubmitting) =
 
         if(data.status == "FAILED"){
         //checking for specific error
-        if(message.includes("name")) {
+            if(message.includes("name")) {
             setFieldError("name", message);
-        } else if (message.includes("email")) {
+            } else if (message.includes("email")) {
             setFieldError("email", message);
-        } else if (message.includes("date")){
+            } else if (message.includes("date")){
             setFieldError("dateOfBirth", message);
-        } else if (message.includes("password")){
+            } else if (message.includes("password")){
             setFieldError("password", message);
-        }
+            }
        
 
         } else if (data.status === "SUCCESS"){
