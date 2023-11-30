@@ -71,7 +71,10 @@ export const signupUser = (credentials, history, setFieldError, setSubmitting) =
             setSubmitting(false);
 
         } else if (data.status === "SUCCESS"){
+            // Login user after successful signup
+            const {email, password} = credentials;
 
+            loginUser({email, password}, navigate, setFieldError,setSubmitting)
         }
     }).catch(err => console.error(err))
 }
