@@ -89,5 +89,8 @@ export const signupUser = (credentials, navigate, setFieldError, setSubmitting) 
 }
 }
 export const logoutUser = () => {
+    return () => {
+
+    }
      
-}
+};
