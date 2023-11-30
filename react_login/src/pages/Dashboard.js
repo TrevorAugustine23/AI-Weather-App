@@ -46,7 +46,7 @@ const Dashboard = () => {
             Logout
           </CustomStyledButton>
           <CustomStyledButton onClick={openWeatherApp}>
-            Weather application
+            Weather App
           </CustomStyledButton>
           <CustomStyledButton>Rainfall Prediction Model</CustomStyledButton>
         </ButtonGroup>
