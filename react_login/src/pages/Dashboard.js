@@ -19,12 +19,10 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   const openWeatherApp = () => {
-    // Change the port number and path accordingly
     window.location.href = 'http://localhost:3001';
   };
 
   const openRainfallForm = () => {
-    // Change the PHP file path accordingly
     window.location.href = 'http://localhost/Project-ConsumePlumberAPIOutput.php';
   };
 
