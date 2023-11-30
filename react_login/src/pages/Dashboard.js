@@ -5,9 +5,12 @@ import { styled } from 'styled-components';
 import Logo from "./../assets/favicon2.jpg"
 
 //auth & redux
-import {connect} from 'react-router-dom';
+import { connect } from 'react-router-dom';
 
 import { logoutUser } from "./../auth/actions/userActions";
+
+//React router
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
     return (
@@ -28,7 +31,8 @@ const Dashboard = () => {
                 <StyledTitle size={65}>
                     Welcome User
                 </StyledTitle>
-                <ButtonGroup><StyledButton to="#">Logout</StyledButton>
+                <ButtonGroup>
+                    <StyledButton to="#" onClick={()=> logoutUser(navigate)}>Logout</StyledButton>
                 
                 </ButtonGroup>
             </StyledFormArea>
