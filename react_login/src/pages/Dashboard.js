@@ -25,7 +25,7 @@ const Dashboard = () => {
 
   const openRainfallForm = () => {
     // Change the PHP file path accordingly
-    window.location.href = 'http://localhost/form.php';
+    window.location.href = 'http://localhost/Project-ConsumePlumberAPIOutput.php';
   };
 
   return (
