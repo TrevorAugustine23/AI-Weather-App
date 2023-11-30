@@ -143,6 +143,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    transition: background-color 0.3s ease;
 }
 
 form {
@@ -153,17 +154,20 @@ form {
     max-width: 400px;
     width: 100%;
     text-align: left;
+    animation: fadeInUp 0.5s ease;
 }
 
 h2 {
     text-align: center;
     color: #3498db;
+    animation: fadeIn 1s ease;
 }
 
 label {
     display: block;
     margin-bottom: 8px;
     color: #555;
+    animation: fadeIn 1s ease;
 }
 
 input {
@@ -173,17 +177,19 @@ input {
     border: 1px solid #ddd;
     border-radius: 4px;
     box-sizing: border-box;
+    transition: border-color 0.3s ease;
 }
 
 input[type="submit"] {
     background-color: #2ecc71;
     color: #fff;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 input[type="submit"]:hover {
     background-color: #27ae60;
+    transform: scale(1.05);
 }
 
 .output {
@@ -193,6 +199,27 @@ input[type="submit"]:hover {
     border: 1px solid #4CAF50;
     border-radius: 4px;
     color: #4CAF50;
+    animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
     </style>
