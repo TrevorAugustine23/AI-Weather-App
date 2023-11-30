@@ -52,7 +52,7 @@ export const signupUser = (credentials, navigate, setFieldError, setSubmitting) 
 
     return (dispatch ) =>{
     
-    axios.post("http://localhost:8000/user/signin", 
+    axios.post("http://localhost:8000/user/signup", 
     credentials,
     {
         headers:{
