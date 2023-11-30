@@ -4,6 +4,11 @@ import { styled } from 'styled-components';
 //Logo
 import Logo from "./../assets/favicon2.jpg"
 
+//auth & redux
+import {connect} from 'react-router-dom';
+
+import { logoutUser } from "./../auth/actions/userActions";
+
 const Dashboard = () => {
     return (
 
@@ -33,4 +38,4 @@ const Dashboard = () => {
     );
 }
 
-export default Dashboard;
+export default connect(null, logoutUser)(Dashboard);
