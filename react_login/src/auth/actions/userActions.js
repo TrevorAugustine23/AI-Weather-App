@@ -2,9 +2,11 @@ import axios from 'axios';
 
 
 import { sessionService } from 'redux-react-session';
+
+
+
  
 export const loginUser = (credentials, navigate, setFieldError, setSubmitting) => {
-
     //Make checks and get some data
     return () => {
 
@@ -48,7 +50,7 @@ export const loginUser = (credentials, navigate, setFieldError, setSubmitting) =
 }
 };
 
-export const signupUser = (credentials, navigate, setFieldError, setSubmitting) => {
+export const signupUser = (credentials, history, setFieldError, setSubmitting) => {
 
     return (dispatch ) =>{
     
@@ -82,14 +84,16 @@ export const signupUser = (credentials, navigate, setFieldError, setSubmitting) 
             // Login user after successful signup
             const {email, password} = credentials;
 
-            dispatch(loginUser({email, password}, navigate, 
+            dispatch(loginUser({email, password}, history, 
                 setFieldError,setSubmitting))
         }
     }).catch(err => console.error(err));
 }
 }
-export const logoutUser = () => {
+export const logoutUser = (navigate) => {
     return () => {
+            sessionService.deleteSession();
+            sessionService.deleteUser();
 
     }
      
